@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "browserify index.js -o build/bundle.js & node server.js",
+    "start": "browserify index.js -o build/bundle.js && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
