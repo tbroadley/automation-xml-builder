@@ -1,0 +1,3 @@
+module.exports = {
+  SET_AUTOMATION_NAME: 'SET_AUTOMATION_NAME',
+}
