@@ -1,9 +1,19 @@
 var React = require('react');
 
+var AppSettings = require('./app-settings');
+var JobName = require('./job-name');
+var JobSchedule = require('./job-schedule')
+var JobAttributes = require('./job-attributes')
+
 module.exports = React.createClass({
   render: function() {
     return (
-      <p>Hello World!</p>
+      <div>
+        <AppSettings />
+        <JobName />
+        <JobSchedule />
+        <JobAttributes />
+      </div>
     )
   },
 });
