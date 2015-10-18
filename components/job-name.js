@@ -2,10 +2,25 @@ import React from 'react';
 
 export default class AppSettings extends React.Component {
   render() {
+    const name = this.props.name;
+
     return (
-      <p>
-        This is the job name component. The name is {this.props.name}.
-      </p>
+      <div>
+        <h1>
+          {"Automation Name" + (name === "" ? "" : ": " + name)}
+        </h1>
+        <input type="text" ref="input" />
+        <button onClick={e => this.handleClick(e)}>
+          Change
+        </button>
+      </div>
     );
+  }
+
+  handleClick() {
+    const node = this.refs.input;
+    const name = node.value.trim();
+    this.props.onSetAutomationName(name);
+    node.value = "";
   }
 }
