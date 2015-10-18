@@ -34,6 +34,8 @@ class App extends React.Component {
   }
 }
 
+// This function takes the state in the Redux store and turns it into a set of
+// props for the top-level React component.
 function select(state) {
   return {
     jobName: state.jobName,
@@ -44,4 +46,5 @@ function select(state) {
   };
 }
 
+// Connect the React top-level component to the Redux store.
 export default connect(select)(App);

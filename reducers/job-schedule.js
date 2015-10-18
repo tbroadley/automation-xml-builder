@@ -15,6 +15,7 @@ function type(state = ScheduleTypes.ONE_TIME, action) {
   }
 }
 
+// The default run time for a one-time automation is 15 minutes from now.
 function oneTimeDate(state = Date.now() + 1000 * 60 * 15, action) {
   switch (action.type) {
     case SET_JOB_SCHEDULE_ONE_TIME_DATE:

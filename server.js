@@ -5,8 +5,10 @@ var browserify = require("browserify");
 var watchify = require("watchify");
 var fs = require("fs");
 
+// The port on which the app will listen.
 const PORT = 8080;
 
+// Set up the watchify build.
 var b = browserify({ cache: {}, packageCache: {} });
 var w = watchify(b);
 
@@ -29,6 +31,7 @@ w.on('log', function(msg) {
 // An 'update' event is emitted to achieve this.
 w.emit('update');
 
+// Start the web server, serving static files from the current directory.
 connect().use(serveStatic(".")).listen(PORT);
 
 console.log("Listening on port " + PORT);
