@@ -5,6 +5,7 @@ export default class AppSettings extends React.Component {
     return (
       <p>
         This is the job schedule component.
+        The schedule type is {this.props.scheduleType}.
       </p>
     );
   }
