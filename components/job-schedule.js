@@ -11,22 +11,25 @@ export default class AppSettings extends React.Component {
         <h2>
           Execution Type
         </h2>
-        <input
-          type='radio'
-          checked={isOneTime}
-          onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
-        />
-        One-Time
         <div>
-          Time: {this.props.scheduleOneTimeDate}
+          <input
+            type='radio'
+            checked={isOneTime}
+            onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
+          />
+          One-Time
+          <div>
+            Time: {this.props.scheduleOneTimeDate}
+          </div>
         </div>
-        <br />
-        <input
-          type='radio'
-          checked={!isOneTime}
-          onChange={() => this.props.onSetScheduleType(ScheduleTypes.DAILY)}
-        />
-        Daily
+        <div>
+          <input
+            type='radio'
+            checked={!isOneTime}
+            onChange={() => this.props.onSetScheduleType(ScheduleTypes.DAILY)}
+          />
+          Daily
+        </div>
       </div>
     );
   }
