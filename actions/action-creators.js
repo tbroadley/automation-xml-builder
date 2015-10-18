@@ -1,4 +1,8 @@
-import { SET_JOB_NAME, SET_JOB_SCHEDULE_TYPE } from './actions';
+import {
+  SET_JOB_NAME,
+  SET_JOB_SCHEDULE_TYPE,
+  SET_JOB_SCHEDULE_ONE_TIME_DATE,
+} from './actions';
 
 export function setJobName(name) {
   return {
@@ -11,5 +15,12 @@ export function setJobScheduleType(scheduleType) {
   return {
     type: SET_JOB_SCHEDULE_TYPE,
     scheduleType,
+  };
+}
+
+export function setJobScheduleOneTimeDate(scheduleOneTimeDate) {
+  return {
+    type: SET_JOB_SCHEDULE_ONE_TIME_DATE,
+    scheduleOneTimeDate,
   };
 }

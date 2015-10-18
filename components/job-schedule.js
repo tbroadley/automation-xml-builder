@@ -17,6 +17,9 @@ export default class AppSettings extends React.Component {
           onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
         />
         One-Time
+        <div>
+          Time: {this.props.scheduleOneTimeDate}
+        </div>
         <br />
         <input
           type='radio'

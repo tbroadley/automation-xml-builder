@@ -10,7 +10,12 @@ import { setJobName, setJobScheduleType } from "../actions/action-creators";
 
 class App extends React.Component {
   render() {
-    const { dispatch, jobName, scheduleType } = this.props;
+    const {
+      dispatch,
+      jobName,
+      schedule
+    } = this.props;
+
     return (
       <div>
         <AppSettings />
@@ -19,8 +24,9 @@ class App extends React.Component {
           onSetJobName={name => dispatch(setJobName(name))}
         />
         <JobSchedule
-          scheduleType={scheduleType}
+          scheduleType={schedule.type}
           onSetScheduleType={type => dispatch(setJobScheduleType(type))}
+          scheduleOneTimeDate={schedule.oneTimeDate}
         />
         <JobAttributes />
       </div>
@@ -31,7 +37,10 @@ class App extends React.Component {
 function select(state) {
   return {
     jobName: state.jobName,
-    scheduleType: state.jobSchedule.type,
+    schedule: {
+      type: state.jobSchedule.type,
+      oneTimeDate: state.jobSchedule.oneTimeDate,
+    }
   };
 }
 

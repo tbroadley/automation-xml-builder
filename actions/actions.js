@@ -1,5 +1,6 @@
 export const SET_JOB_NAME = 'SET_JOB_NAME';
 export const SET_JOB_SCHEDULE_TYPE = 'SET_JOB_SCHEDULE_TYPE';
+export const SET_JOB_SCHEDULE_ONE_TIME_DATE = 'SET_JOB_SCHEDULE_ONE_TIME_DATE';
 
 export const ScheduleTypes = {
   DAILY: 'DAILY',
