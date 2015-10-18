@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 
 import automationName from './automation-name.js';
 
-const app = redux.combineReducers({
+const root = combineReducers({
   automationName,
 });
 
-export default app;
+export default root;

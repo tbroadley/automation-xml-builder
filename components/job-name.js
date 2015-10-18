@@ -4,7 +4,7 @@ export default class AppSettings extends React.Component {
   render() {
     return (
       <p>
-        This is the job name component.
+        This is the job name component. The name is {this.props.name}.
       </p>
     );
   }
