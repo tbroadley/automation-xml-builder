@@ -13,7 +13,11 @@ var w = watchify(b);
 w.add('index.js');
 
 w.on('update', function() {
-  w.bundle().pipe(fs.createWriteStream('build/bundle.js'));
+  w.bundle()
+    .on('error', function(err) {
+      console.log(err.message);
+    })
+    .pipe(fs.createWriteStream('build/bundle.js'));
 });
 
 w.on('log', function(msg) {
