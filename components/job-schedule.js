@@ -2,6 +2,38 @@ import React from 'react';
 
 import { ScheduleTypes } from '../actions/actions';
 
+class DateSetter extends React.Component {
+  render() {
+    const date = this.props.date;
+
+    return (
+      <div>
+        <input type='text' value={date.getFullYear()} />
+        -
+        <input type='text' value={date.getMonth()} />
+        -
+        <input type='text' value={date.getDate()} />
+      </div>
+    );
+  }
+}
+
+class TimeSetter extends React.Component {
+  render() {
+    const date = this.props.date;
+
+    return (
+      <div>
+        <input type='text' value={date.getHours()} />
+        :
+        <input type='text' value={date.getMinutes()} />
+        :
+        <input type='text' value={date.getSeconds()} />
+      </div>
+    );
+  }
+}
+
 export default class AppSettings extends React.Component {
   render() {
     let isOneTime = this.props.scheduleType === ScheduleTypes.ONE_TIME;
@@ -19,7 +51,8 @@ export default class AppSettings extends React.Component {
           />
           One-Time
           <div>
-            Time: {this.props.scheduleOneTimeDate}
+            <DateSetter date={this.props.scheduleOneTimeDate} />
+            <TimeSetter date={this.props.scheduleOneTimeDate} />
           </div>
         </div>
         <div>
