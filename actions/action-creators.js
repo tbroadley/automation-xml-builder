@@ -1,10 +1,8 @@
-var actions = require('./actions');
+import { SET_AUTOMATION_NAME } from './actions';
 
-module.exports = {
-  setAutomationName: function(name) {
+export function setAutomationName(name) {
     return {
-      type: actions.SET_AUTOMATION_NAME,
+      type: SET_AUTOMATION_NAME,
       name: name,
     };
-  },
-};
+}

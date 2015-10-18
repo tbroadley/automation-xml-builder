@@ -1,6 +1,6 @@
-var Actions = require('../actions/actions');
+import { SET_AUTOMATION_NAME } from '../actions/actions';
 
-module.exports = function(state = "", action) {
+export default function automationName(state = "", action) {
   switch (action.type) {
     case Actions.SET_AUTOMATION_NAME:
       return action.name;

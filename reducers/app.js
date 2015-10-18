@@ -1,7 +1,9 @@
-var redux = require('redux');
+import { combineReducers } from 'redux';
 
-var automationName = require('./automation-name.js');
+import automationName from './automation-name.js';
 
-module.exports = redux.combineReducers({
+const app = redux.combineReducers({
   automationName,
-})
+});
+
+export default app;

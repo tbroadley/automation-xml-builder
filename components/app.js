@@ -1,12 +1,12 @@
-var React = require('react');
+import React from 'react';
 
-var AppSettings = require('./app-settings');
-var JobName = require('./job-name');
-var JobSchedule = require('./job-schedule')
-var JobAttributes = require('./job-attributes')
+import AppSettings from './app-settings';
+import JobName from './job-name';
+import JobSchedule from './job-schedule';
+import JobAttributes from './job-attributes';
 
-module.exports = React.createClass({
-  render: function() {
+export default class App extends React.Component {
+  render() {
     return (
       <div>
         <AppSettings />
@@ -15,5 +15,5 @@ module.exports = React.createClass({
         <JobAttributes />
       </div>
     )
-  },
-});
+  }
+}
