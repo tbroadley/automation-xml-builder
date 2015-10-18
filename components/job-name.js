@@ -20,7 +20,7 @@ export default class AppSettings extends React.Component {
   handleClick() {
     const node = this.refs.input;
     const name = node.value.trim();
-    this.props.onSetAutomationName(name);
+    this.props.onSetJobName(name);
     node.value = "";
   }
 }

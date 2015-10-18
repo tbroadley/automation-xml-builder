@@ -1,1 +1,1 @@
-export const SET_AUTOMATION_NAME = 'SET_AUTOMATION_NAME';
+export const SET_JOB_NAME = 'SET_JOB_NAME';

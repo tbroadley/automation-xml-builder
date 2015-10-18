@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import automationName from './automation-name.js';
+import jobName from './job-name.js';
 
 const root = combineReducers({
-  automationName,
+  jobName,
 });
 
 export default root;

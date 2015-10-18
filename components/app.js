@@ -6,17 +6,17 @@ import JobName from './job-name';
 import JobSchedule from './job-schedule';
 import JobAttributes from './job-attributes';
 
-import { setAutomationName } from "../actions/action-creators";
+import { setJobName } from "../actions/action-creators";
 
 class App extends React.Component {
   render() {
-    const { dispatch, automationName } = this.props;
+    const { dispatch, jobName } = this.props;
     return (
       <div>
         <AppSettings />
         <JobName
-          name={automationName}
-          onSetAutomationName={name => dispatch(setAutomationName(name))}
+          name={jobName}
+          onSetJobName={name => dispatch(setJobName(name))}
         />
         <JobSchedule />
         <JobAttributes />
@@ -27,7 +27,7 @@ class App extends React.Component {
 
 function select(state) {
   return {
-    automationName: state.automationName,
+    jobName: state.jobName,
   };
 }
 

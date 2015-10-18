@@ -1,8 +1,8 @@
-import { SET_AUTOMATION_NAME } from './actions';
+import { SET_JOB_NAME } from './actions';
 
-export function setAutomationName(name) {
+export function setJobName(name) {
     return {
-      type: SET_AUTOMATION_NAME,
+      type: SET_JOB_NAME,
       name: name,
     };
 }
