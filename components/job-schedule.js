@@ -8,27 +8,20 @@ class DateSetter extends React.Component {
 
     return (
       <div>
-        <input type='text' value={date.getFullYear()} />
-        -
-        <input type='text' value={date.getMonth()} />
-        -
-        <input type='text' value={date.getDate()} />
-      </div>
-    );
-  }
-}
-
-class TimeSetter extends React.Component {
-  render() {
-    const date = this.props.date;
-
-    return (
-      <div>
-        <input type='text' value={date.getHours()} />
-        :
-        <input type='text' value={date.getMinutes()} />
-        :
-        <input type='text' value={date.getSeconds()} />
+        <div>
+          <input type='text' value={date.getFullYear()} />
+          -
+          <input type='text' value={date.getMonth()} />
+          -
+          <input type='text' value={date.getDate()} />
+        </div>
+        <div>
+          <input type='text' value={date.getHours()} />
+          :
+          <input type='text' value={date.getMinutes()} />
+          :
+          <input type='text' value={date.getSeconds()} />
+        </div>
       </div>
     );
   }
@@ -50,10 +43,7 @@ export default class AppSettings extends React.Component {
             onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
           />
           One-Time
-          <div>
-            <DateSetter date={this.props.scheduleOneTimeDate} />
-            <TimeSetter date={this.props.scheduleOneTimeDate} />
-          </div>
+          <DateSetter date={this.props.scheduleOneTimeDate} />
         </div>
         <div>
           <input
