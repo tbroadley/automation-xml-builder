@@ -68,7 +68,7 @@ function activityArguments(state = [], action) {
 }
 
 const activity = combineReducers({
-  name,
+  name: activityName,
   arguments: activityArguments,
 })
 
