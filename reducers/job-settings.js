@@ -36,7 +36,7 @@ export default function jobSettings(state = [], action) {
       case CHANGE_SETTING_VALUE:
         return [
           ...state.slice(0, action.index),
-          jobSetting(state, action),
+          jobSetting(state[action.index], action),
           ...state.slice(action.index + 1)
         ];
     default:
