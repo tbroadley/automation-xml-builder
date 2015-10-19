@@ -22,8 +22,8 @@ function makeActionCreator(type, ...argNames) {
 export const setJobName = makeActionCreator(SET_JOB_NAME, 'name');
 export const setJobDescription = makeActionCreator(SET_JOB_DESCRIPTION, 'description');
 
-export const setJobScheduleType = makeActionCreator(SET_JOB_SCHEDULE_TYPE, 'description');
-export const setJobScheduleOneTimeDate = makeActionCreator(SET_JOB_SCHEDULE_ONE_TIME_DATE, 'description');
+export const setJobScheduleType = makeActionCreator(SET_JOB_SCHEDULE_TYPE, 'scheduleType');
+export const setJobScheduleOneTimeDate = makeActionCreator(SET_JOB_SCHEDULE_ONE_TIME_DATE, 'scheduleOneTimeDate');
 
 export function addSetting(name = '', value = '') {
   return {
