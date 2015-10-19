@@ -35,16 +35,23 @@ function workflow(state = { name: '', activities: [] }, action) {
         ]
       };
     case REMOVE_ACTIVITY:
-      return [
-        ...state.slice(0, action.activityIndex),
-        ...state.slice(action.activityIndex + 1)
-      ];
+      return {
+        name: state.name,
+        activities: [
+          ...state.activities.slice(0, action.activityIndex),
+          ...state.activities.slice(action.activityIndex + 1)
+        ],
+      };
     case CHANGE_ACTIVITY_NAME:
-      return [
-        ...state.slice(0, action.activityIndex),
-        activity(state[action.activityIndex], action),
-        ...state.slice(action.activityIndex + 1)
-      ];
+      // Let the action flow down to the activity reducer.
+      return {
+        name: state.name,
+        activities: [
+          ...state.activities.slice(0, action.activityIndex),
+          activity(state[action.activityIndex], action),
+          ...state.activities.slice(action.activityIndex + 1)
+        ],
+      }
     default:
       return state;
   }
