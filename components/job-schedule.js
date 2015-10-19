@@ -115,6 +115,10 @@ export default class JobSchedule extends React.Component {
             onChange={() => this.props.onSetScheduleType(ScheduleTypes.DAILY)}
           />
           Daily
+          <TimeSetter
+            time={this.props.scheduleDailyTime}
+            onTimeChange={this.props.onDailyTimeChange}
+          />
         </div>
       </div>
     );

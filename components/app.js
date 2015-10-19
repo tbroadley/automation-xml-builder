@@ -13,6 +13,7 @@ import {
   setJobDescription,
   setJobScheduleType,
   setJobScheduleOneTimeDate,
+  setJobScheduleDailyTime,
   addSetting,
   removeSetting,
   changeSettingName,
@@ -55,6 +56,10 @@ class App extends React.Component {
           scheduleOneTimeDate={schedule.oneTimeDate}
           onOneTimeDateChange={date =>
             dispatch(setJobScheduleOneTimeDate(date))}
+          scheduleDailyTime={schedule.dailyTime}
+          onDailyTimeChange={time =>
+            dispatch(setJobScheduleDailyTime(time))
+          }
         />
         <JobAttributes />
       </div>
@@ -72,6 +77,7 @@ function select(state) {
     schedule: {
       type: state.jobSchedule.type,
       oneTimeDate: state.jobSchedule.oneTimeDate,
+      dailyTime: state.jobSchedule.dailyTime,
     }
   };
 }
