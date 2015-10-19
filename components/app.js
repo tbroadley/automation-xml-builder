@@ -21,6 +21,9 @@ import {
   addWorkflow,
   removeWorkflow,
   changeWorkflowName,
+  addActivity,
+  removeActivity,
+  changeActivityName,
 } from "../actions/action-creators";
 
 class App extends React.Component {
@@ -65,13 +68,19 @@ class App extends React.Component {
           onChangeSettingValue={(index, value) =>
             dispatch(changeSettingValue(index, value))}
         />
-      <JobWorkflows
-          workflows={jobWorkflows}
-          onAddWorkflow={() => dispatch(addWorkflow())}
-          onRemoveWorkflow={index => dispatch(removeWorkflow(index))}
-          onChangeWorkflowName={(index, name) =>
-            dispatch(changeWorkflowName(index, name))}
-        />
+        <JobWorkflows
+            workflows={jobWorkflows}
+            onAddWorkflow={() => dispatch(addWorkflow())}
+            onRemoveWorkflow={index => dispatch(removeWorkflow(index))}
+            onChangeWorkflowName={(index, name) =>
+              dispatch(changeWorkflowName(index, name))}
+            onAddActivity={workflowIndex =>
+              dispatch(addActivity(workflowIndex))}
+            onRemoveActivity={(workflowIndex, activityIndex) =>
+              dispatch(removeActivity(workflowIndex, activityIndex))}
+            onChangeActivityName={(workflowIndex, activityIndex, name) =>
+              dispatch(changeActivityName(workflowIndex, activityIndex, name))}
+          />
       </div>
     );
   }
