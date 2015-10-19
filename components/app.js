@@ -41,15 +41,6 @@ class App extends React.Component {
           description={jobDescription}
           onSetJobDescription={desc => dispatch(setJobDescription(desc))}
         />
-        <JobSettings
-          settings={jobSettings}
-          onAddSetting={() => dispatch(addSetting())}
-          onRemoveSetting={index => dispatch(removeSetting(index))}
-          onChangeSettingName={(index, name) =>
-            dispatch(changeSettingName(index, name))}
-          onChangeSettingValue={(index, value) =>
-            dispatch(changeSettingValue(index, value))}
-        />
         <JobSchedule
           scheduleType={schedule.type}
           onSetScheduleType={type => dispatch(setJobScheduleType(type))}
@@ -60,6 +51,15 @@ class App extends React.Component {
           onDailyTimeChange={time =>
             dispatch(setJobScheduleDailyTime(time))
           }
+        />
+        <JobSettings
+          settings={jobSettings}
+          onAddSetting={() => dispatch(addSetting())}
+          onRemoveSetting={index => dispatch(removeSetting(index))}
+          onChangeSettingName={(index, name) =>
+            dispatch(changeSettingName(index, name))}
+          onChangeSettingValue={(index, value) =>
+            dispatch(changeSettingValue(index, value))}
         />
         <JobAttributes />
       </div>
