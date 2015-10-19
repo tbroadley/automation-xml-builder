@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class AppSettings extends React.Component {
+export default class JobName extends React.Component {
   render() {
     const name = this.props.name;
 

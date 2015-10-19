@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class AppSettings extends React.Component {
+export default class JobAttributes extends React.Component {
   render() {
     return (
       <p>
