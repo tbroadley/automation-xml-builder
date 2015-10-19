@@ -24,31 +24,36 @@ class DateInput extends React.Component {
 
 class DateSetter extends React.Component {
   render() {
-    const date = this.props.date;
-    const onDateChange = this.props.onDateChange;
+    let d = Date.prototype;
 
     return (
       <div>
         <div>
-          <DateInput
-            date={date}
-            getter={Date.prototype.getFullYear}
-            setter={Date.prototype.setFullYear}
-            handleChange={onDateChange}
-          />
+          {this.makeDateInput(d.getFullYear, d.setFullYear)}
           -
-          <input type='text' value={date.getMonth()} />
+          {this.makeDateInput(d.getMonth, d.setMonth)}
           -
-          <input type='text' value={date.getDate()} />
+          {this.makeDateInput(d.getDate, d.setDate)}
         </div>
         <div>
-          <input type='text' value={date.getHours()} />
+          {this.makeDateInput(d.getHours, d.setHours)}
           :
-          <input type='text' value={date.getMinutes()} />
+          {this.makeDateInput(d.getMinutes, d.setMinutes)}
           :
-          <input type='text' value={date.getSeconds()} />
+          {this.makeDateInput(d.getSeconds, d.setSeconds)}
         </div>
       </div>
+    );
+  }
+
+  makeDateInput(getter, setter) {
+    return (
+      <DateInput
+        date={this.props.date}
+        getter={getter}
+        setter={setter}
+        handleChange={this.props.onDateChange}
+      />
     );
   }
 }
