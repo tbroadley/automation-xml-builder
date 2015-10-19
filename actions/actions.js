@@ -10,6 +10,10 @@ export const REMOVE_SETTING = 'REMOVE_SETTING';
 export const CHANGE_SETTING_NAME = 'CHANGE_SETTING_NAME';
 export const CHANGE_SETTING_VALUE = 'CHANGE_SETTING_VALUE';
 
+export const ADD_WORKFLOW = 'ADD_WORKFLOW';
+export const REMOVE_WORKFLOW = 'REMOVE_WORKFLOW';
+export const CHANGE_WORKFLOW_NAME = 'CHANGE_WORKFLOW_NAME';
+
 // Automations are either run once, or are scheduled to run once a day at a
 // specific time.
 export const ScheduleTypes = {
