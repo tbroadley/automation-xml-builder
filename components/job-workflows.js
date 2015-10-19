@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class JobAttributes extends React.Component {
+export default class JobWorkflows extends React.Component {
   render() {
     return (
       <div>

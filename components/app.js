@@ -6,7 +6,7 @@ import JobName from './job-name';
 import JobDescription from './job-description'
 import JobSettings from './job-settings';
 import JobSchedule from './job-schedule';
-import JobAttributes from './job-attributes';
+import JobWorkflows from './job-workflows';
 
 import {
   setJobName,
@@ -31,7 +31,7 @@ class App extends React.Component {
       jobDescription,
       jobSettings,
       schedule,
-      jobAttributes,
+      jobWorkflows,
     } = this.props;
 
     return (
@@ -65,8 +65,8 @@ class App extends React.Component {
           onChangeSettingValue={(index, value) =>
             dispatch(changeSettingValue(index, value))}
         />
-        <JobAttributes
-          workflows={jobAttributes}
+      <JobWorkflows
+          workflows={jobWorkflows}
           onAddWorkflow={() => dispatch(addWorkflow())}
           onRemoveWorkflow={index => dispatch(removeWorkflow(index))}
           onChangeWorkflowName={(index, name) =>
@@ -89,7 +89,7 @@ function select(state) {
       oneTimeDate: state.jobSchedule.oneTimeDate,
       dailyTime: state.jobSchedule.dailyTime,
     },
-    jobAttributes: state.jobAttributes,
+    jobWorkflows: state.jobWorkflows,
   };
 }
 
