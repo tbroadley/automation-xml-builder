@@ -12,7 +12,18 @@ const PORT = 8080;
 var b = browserify({ cache: {}, packageCache: {} });
 var w = watchify(b);
 
-w.add('index.js');
+// Check if the build should be done in development mode.
+// The development build includes redux-devtools.
+var devMode = process.argv.length > 2 && process.argv[2] === 'dev';
+
+if (devMode) {
+  w.add('index.dev.js');
+  console.log('Building in development mode.')
+  console.log('The development build includes redux-devtools.')
+} else {
+  w.add('index.js');
+}
+
 
 w.on('update', function() {
   w.bundle()
