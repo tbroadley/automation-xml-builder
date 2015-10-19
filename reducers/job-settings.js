@@ -19,8 +19,6 @@ function jobSetting(state = { name: '', value: '' }, action) {
 export default function jobSettings(state = [], action) {
   switch (action.type) {
     case ADD_SETTING:
-      // Call jobSetting with an undefined state to get the default job setting
-      // object.
       return [...state,
         {
           name: action.name,
