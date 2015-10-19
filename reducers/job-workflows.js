@@ -2,7 +2,21 @@ import {
   ADD_WORKFLOW,
   REMOVE_WORKFLOW,
   CHANGE_WORKFLOW_NAME,
+  ADD_ACTIVITY,
+  REMOVE_ACTIVITY,
+  CHANGE_ACTIVITY_NAME,
 } from '../actions/actions'
+
+function activity(state = { name: '', arguments: [] }, action) {
+  switch (action.type) {
+    case CHANGE_ACTIVITY_NAME:
+      return Object.assign({}, state, {
+        name: action.name,
+      });
+    default:
+      return state;
+  }
+}
 
 function workflow(state = { name: '', activities: [] }, action) {
   switch (action.type) {
@@ -10,6 +24,27 @@ function workflow(state = { name: '', activities: [] }, action) {
       return Object.assign({}, state, {
         name: action.name,
       });
+    case ADD_ACTIVITY:
+      // Pass undefined state to the activity reducer to get the default
+      // activity state.
+      return {
+        name: state.name,
+        activities: [
+          ...state.activities,
+          activity(undefined, action)
+        ]
+      };
+    case REMOVE_ACTIVITY:
+      return [
+        ...state.slice(0, action.activityIndex),
+        ...state.slice(action.activityIndex + 1)
+      ];
+    case CHANGE_ACTIVITY_NAME:
+      return [
+        ...state.slice(0, action.activityIndex),
+        activity(state[action.activityIndex], action),
+        ...state.slice(action.activityIndex + 1)
+      ];
     default:
       return state;
   }
@@ -30,6 +65,10 @@ export default function jobWorkflows(state = [], action) {
         ...state.slice(action.workflowIndex + 1)
       ];
     case CHANGE_WORKFLOW_NAME:
+    case ADD_ACTIVITY:
+    case REMOVE_ACTIVITY:
+    case CHANGE_ACTIVITY_NAME:
+      // Let the action flow down to the workflow reducer.
       return [
         ...state.slice(0, action.workflowIndex),
         workflow(state[action.workflowIndex], action),
