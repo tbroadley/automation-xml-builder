@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 
 import AppSettings from './app-settings';
 import JobName from './job-name';
+import JobDescription from './job-description'
 import JobSettings from './job-settings';
 import JobSchedule from './job-schedule';
 import JobAttributes from './job-attributes';
 
 import {
   setJobName,
+  setJobDescription,
   setJobScheduleType,
   setJobScheduleOneTimeDate
 } from "../actions/action-creators";
@@ -18,7 +20,8 @@ class App extends React.Component {
     const {
       dispatch,
       jobName,
-      schedule
+      jobDescription,
+      schedule,
     } = this.props;
 
     return (
@@ -27,6 +30,10 @@ class App extends React.Component {
         <JobName
           name={jobName}
           onSetJobName={name => dispatch(setJobName(name))}
+        />
+        <JobDescription
+          description={jobDescription}
+          onSetJobDescription={desc => dispatch(setJobDescription(desc))}
         />
         <JobSettings />
         <JobSchedule
@@ -47,6 +54,7 @@ class App extends React.Component {
 function select(state) {
   return {
     jobName: state.jobName,
+    jobDescription: state.jobDescription,
     schedule: {
       type: state.jobSchedule.type,
       oneTimeDate: state.jobSchedule.oneTimeDate,
