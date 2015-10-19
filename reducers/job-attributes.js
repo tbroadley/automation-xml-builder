@@ -18,10 +18,11 @@ function workflow(state = { name: '', activities: [] }, action) {
 export default function jobAttributes(state = [], action) {
   switch (action.type) {
     case ADD_WORKFLOW:
-      return [...state, {
-          name: action.name,
-          activities: action.activities,
-        }
+      // Pass undefined state to the workflow reducer to get the default
+      // workflow state.
+      return [
+        ...state,
+        workflow(undefined, action)
       ];
     case REMOVE_WORKFLOW:
       return [

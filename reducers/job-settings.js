@@ -19,11 +19,11 @@ function jobSetting(state = { name: '', value: '' }, action) {
 export default function jobSettings(state = [], action) {
   switch (action.type) {
     case ADD_SETTING:
-      return [...state,
-        {
-          name: action.name,
-          value: action.value,
-        }
+      // Pass undefined state to the job setting reducer to get the default job
+      // setting state.
+      return [
+        ...state,
+        jobSetting(undefined, action)
       ];
       case REMOVE_SETTING:
         return [
