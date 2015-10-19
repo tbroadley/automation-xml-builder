@@ -1,5 +1,60 @@
 import React from 'react';
 
+class JobArguments extends React.Component {
+  render() {
+    let workflowIndex = this.props.workflowIndex;
+    let activityIndex = this.props.activityIndex;
+
+    return (
+      <div>
+        <table>
+          {this.props.arguments.map((el, argumentIndex) => {
+            return (
+              <tr key={argumentIndex}>
+                <td>
+                  <input
+                    type='text'
+                    value={el.name}
+                    onChange={e => this.props.onChangeArgumentName(
+                      workflowIndex,
+                      activityIndex,
+                      argumentIndex,
+                      e.target.value)}
+                  />
+                  <input
+                    type='text'
+                    value={el.value}
+                    onChange={e => this.props.onChangeArgumentValue(
+                      workflowIndex,
+                      activityIndex,
+                      argumentIndex,
+                      e.target.value)}
+                  />
+                </td>
+                <td>
+                  <button onClick={() => this.props.onRemoveArgument(
+                      workflowIndex,
+                      activityIndex,
+                      argumentIndex
+                  )}>
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </table>
+        <button onClick={() => this.props.onAddArgument(
+            workflowIndex,
+            activityIndex
+        )}>
+          Add Argument
+        </button>
+      </div>
+    );
+  }
+}
+
 class JobActivities extends React.Component {
   render() {
     let workflowIndex = this.props.workflowIndex;
@@ -15,6 +70,15 @@ class JobActivities extends React.Component {
                     type='text'
                     value={el.name}
                     onChange={e => this.props.onChangeActivityName(workflowIndex, activityIndex, e.target.value)}
+                  />
+                  <JobArguments
+                    workflowIndex={workflowIndex}
+                    activityIndex={activityIndex}
+                    arguments={el.arguments}
+                    onAddArgument={this.props.onAddArgument}
+                    onRemoveArgument={this.props.onRemoveArgument}
+                    onChangeArgumentName={this.props.onChangeArgumentName}
+                    onChangeArgumentValue={this.props.onChangeArgumentValue}
                   />
                 </td>
                 <td>
@@ -53,6 +117,10 @@ export default class JobWorkflows extends React.Component {
                     onAddActivity={this.props.onAddActivity}
                     onRemoveActivity={this.props.onRemoveActivity}
                     onChangeActivityName={this.props.onChangeActivityName}
+                    onAddArgument={this.props.onAddArgument}
+                    onRemoveArgument={this.props.onRemoveArgument}
+                    onChangeArgumentName={this.props.onChangeArgumentName}
+                    onChangeArgumentValue={this.props.onChangeArgumentValue}
                   />
                 </td>
                 <td>

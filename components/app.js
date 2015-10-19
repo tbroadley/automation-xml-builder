@@ -24,6 +24,10 @@ import {
   addActivity,
   removeActivity,
   changeActivityName,
+  addArgument,
+  removeArgument,
+  changeArgumentName,
+  changeArgumentValue,
 } from "../actions/action-creators";
 
 class App extends React.Component {
@@ -75,6 +79,10 @@ class App extends React.Component {
             onAddActivity={d(addActivity)}
             onRemoveActivity={d(removeActivity)}
             onChangeActivityName={d(changeActivityName)}
+            onAddArgument={d(addArgument)}
+            onRemoveArgument={d(removeArgument)}
+            onChangeArgumentName={d(changeArgumentName)}
+            onChangeArgumentValue={d(changeArgumentValue)}
           />
       </div>
     );
