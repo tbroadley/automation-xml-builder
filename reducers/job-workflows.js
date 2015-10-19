@@ -9,16 +9,26 @@ import {
   CHANGE_ACTIVITY_NAME,
 } from '../actions/actions'
 
-function activity(state = { name: '', arguments: [] }, action) {
+function activityName(state = '', action) {
   switch (action.type) {
     case CHANGE_ACTIVITY_NAME:
-      return Object.assign({}, state, {
-        name: action.name,
-      });
+      return action.name;
     default:
       return state;
   }
 }
+
+function activityArguments(state = [], action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+const activity = combineReducers({
+  name,
+  arguments: activityArguments,
+})
 
 function workflowName(state = '', action) {
   switch (action.type) {
