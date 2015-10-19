@@ -14,6 +14,10 @@ import {
   ADD_ACTIVITY,
   REMOVE_ACTIVITY,
   CHANGE_ACTIVITY_NAME,
+  ADD_ARGUMENT,
+  REMOVE_ARGUMENT,
+  CHANGE_ARGUMENT_NAME,
+  CHANGE_ARGUMENT_VALUE,
 } from './actions';
 
 function makeActionCreator(type, ...argNames) {
@@ -45,3 +49,20 @@ export const changeWorkflowName = makeActionCreator(CHANGE_WORKFLOW_NAME, 'workf
 export const addActivity = makeActionCreator(ADD_ACTIVITY, 'workflowIndex');
 export const removeActivity = makeActionCreator(REMOVE_ACTIVITY, 'workflowIndex', 'activityIndex');
 export const changeActivityName = makeActionCreator(CHANGE_ACTIVITY_NAME, 'workflowIndex', 'activityIndex', 'name');
+
+export const addArgument = makeActionCreator(ADD_ARGUMENT, 'workflowIndex', 'activityIndex');
+export const removeArgument = makeActionCreator(REMOVE_ARGUMENT, 'workflowIndex', 'activityIndex', 'argumentIndex');
+export const changeArgumentName = makeActionCreator(
+  CHANGE_ARGUMENT_NAME,
+  'workflowIndex',
+  'activityIndex',
+  'argumentIndex',
+  'name'
+);
+export const changeArgumentValue = makeActionCreator(
+  CHANGE_ARGUMENT_VALUE,
+  'workflowIndex',
+  'activityIndex',
+  'argumentIndex',
+  'value'
+);

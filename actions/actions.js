@@ -18,6 +18,11 @@ export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 export const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY';
 export const CHANGE_ACTIVITY_NAME = 'CHANGE_ACTIVITY_NAME';
 
+export const ADD_ARGUMENT = 'ADD_ARGUMENT';
+export const REMOVE_ARGUMENT = 'REMOVE_ARGUMENT';
+export const CHANGE_ARGUMENT_NAME = 'CHANGE_ARGUMENT_NAME';
+export const CHANGE_ARGUMENT_VALUE = 'CHANGE_ARGUMENT_VALUE';
+
 // Automations are either run once, or are scheduled to run once a day at a
 // specific time.
 export const ScheduleTypes = {

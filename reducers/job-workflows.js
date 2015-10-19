@@ -7,7 +7,29 @@ import {
   ADD_ACTIVITY,
   REMOVE_ACTIVITY,
   CHANGE_ACTIVITY_NAME,
+  ADD_ARGUMENT,
+  REMOVE_ARGUMENT,
+  CHANGE_ARGUMENT_NAME,
+  CHANGE_ARGUMENT_VALUE,
 } from '../actions/actions'
+
+
+function argument(state = { name: '', value: '' }, action) {
+  switch (action.type) {
+    case CHANGE_ARGUMENT_NAME:
+      return {
+        name: action.name,
+        value: state.value,
+      };
+    case CHANGE_ARGUMENT_VALUE:
+      return {
+        name: state.name,
+        value: action.value,
+      };
+    default:
+      return state;
+  }
+}
 
 function activityName(state = '', action) {
   switch (action.type) {
@@ -20,6 +42,26 @@ function activityName(state = '', action) {
 
 function activityArguments(state = [], action) {
   switch (action.type) {
+    case ADD_ARGUMENT:
+      // Pass undefined state to the activity reducer to get the default
+      // activity state.
+      return [
+        ...state,
+        argument(undefined, action)
+      ];
+    case REMOVE_ARGUMENT:
+      return [
+        ...state.slice(0, action.argumentIndex),
+        ...state.slice(action.argumentIndex + 1)
+      ];
+    case CHANGE_ARGUMENT_NAME:
+    case CHANGE_ARGUMENT_VALUE:
+      // Let the action flow down to the activity reducer.
+      return [
+        ...state.slice(0, action.argumentIndex),
+        argument(state[action.argumentIndex], action),
+        ...state.slice(action.argumentIndex + 1)
+      ];
     default:
       return state;
   }
@@ -54,6 +96,10 @@ function workflowActivities(state = [], action) {
         ...state.slice(action.activityIndex + 1)
       ];
     case CHANGE_ACTIVITY_NAME:
+    case ADD_ARGUMENT:
+    case REMOVE_ARGUMENT:
+    case CHANGE_ARGUMENT_NAME:
+    case CHANGE_ARGUMENT_VALUE:
       // Let the action flow down to the activity reducer.
       return [
         ...state.slice(0, action.activityIndex),
@@ -88,6 +134,10 @@ export default function jobWorkflows(state = [], action) {
     case ADD_ACTIVITY:
     case REMOVE_ACTIVITY:
     case CHANGE_ACTIVITY_NAME:
+    case ADD_ARGUMENT:
+    case REMOVE_ARGUMENT:
+    case CHANGE_ARGUMENT_NAME:
+    case CHANGE_ARGUMENT_VALUE:
       // Let the action flow down to the workflow reducer.
       return [
         ...state.slice(0, action.workflowIndex),
