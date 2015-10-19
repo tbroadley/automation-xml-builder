@@ -37,49 +37,44 @@ class App extends React.Component {
       jobWorkflows,
     } = this.props;
 
+    function d(actionCreator) {
+      return (...args) => dispatch(actionCreator(...args));
+    }
+
     return (
       <div>
         <AppSettings />
         <JobName
           name={jobName}
-          onSetJobName={name => dispatch(setJobName(name))}
+          onSetJobName={d(setJobName)}
         />
         <JobDescription
           description={jobDescription}
-          onSetJobDescription={desc => dispatch(setJobDescription(desc))}
+          onSetJobDescription={d(setJobDescription)}
         />
         <JobSchedule
           scheduleType={schedule.type}
-          onSetScheduleType={type => dispatch(setJobScheduleType(type))}
+          onSetScheduleType={d(setJobScheduleType)}
           scheduleOneTimeDate={schedule.oneTimeDate}
-          onOneTimeDateChange={date =>
-            dispatch(setJobScheduleOneTimeDate(date))}
+          onOneTimeDateChange={d(setJobScheduleOneTimeDate)}
           scheduleDailyTime={schedule.dailyTime}
-          onDailyTimeChange={time =>
-            dispatch(setJobScheduleDailyTime(time))
-          }
+          onDailyTimeChange={d(setJobScheduleDailyTime)}
         />
         <JobSettings
           settings={jobSettings}
-          onAddSetting={() => dispatch(addSetting())}
-          onRemoveSetting={index => dispatch(removeSetting(index))}
-          onChangeSettingName={(index, name) =>
-            dispatch(changeSettingName(index, name))}
-          onChangeSettingValue={(index, value) =>
-            dispatch(changeSettingValue(index, value))}
+          onAddSetting={d(addSetting)}
+          onRemoveSetting={d(removeSetting)}
+          onChangeSettingName={d(changeSettingName)}
+          onChangeSettingValue={d(changeSettingValue)}
         />
         <JobWorkflows
             workflows={jobWorkflows}
-            onAddWorkflow={() => dispatch(addWorkflow())}
-            onRemoveWorkflow={index => dispatch(removeWorkflow(index))}
-            onChangeWorkflowName={(index, name) =>
-              dispatch(changeWorkflowName(index, name))}
-            onAddActivity={workflowIndex =>
-              dispatch(addActivity(workflowIndex))}
-            onRemoveActivity={(workflowIndex, activityIndex) =>
-              dispatch(removeActivity(workflowIndex, activityIndex))}
-            onChangeActivityName={(workflowIndex, activityIndex, name) =>
-              dispatch(changeActivityName(workflowIndex, activityIndex, name))}
+            onAddWorkflow={d(addWorkflow)}
+            onRemoveWorkflow={d(removeWorkflow)}
+            onChangeWorkflowName={d(changeWorkflowName)}
+            onAddActivity={d(addActivity)}
+            onRemoveActivity={d(removeActivity)}
+            onChangeActivityName={d(changeActivityName)}
           />
       </div>
     );
