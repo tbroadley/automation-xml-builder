@@ -31,7 +31,13 @@ class DateSetter extends React.Component {
         <div>
           {this.makeDateInput(d.getFullYear, d.setFullYear)}
           -
-          {this.makeDateInput(d.getMonth, d.setMonth)}
+          {this.makeDateInput(
+            function() {
+              return this.getMonth() + 1;
+            },
+            function(x) {
+              this.setMonth(x - 1);
+            })}
           -
           {this.makeDateInput(d.getDate, d.setDate)}
         </div>
