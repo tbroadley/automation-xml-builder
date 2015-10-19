@@ -30,11 +30,11 @@ export const setJobScheduleType = makeActionCreator(SET_JOB_SCHEDULE_TYPE, 'sche
 export const setJobScheduleOneTimeDate = makeActionCreator(SET_JOB_SCHEDULE_ONE_TIME_DATE, 'scheduleOneTimeDate');
 export const setJobScheduleDailyTime = makeActionCreator(SET_JOB_SCHEDULE_DAILY_TIME, 'scheduleDailyTime')
 
-export const addSetting = makeActionCreator(ADD_SETTING, 'name', 'value');
+export const addSetting = makeActionCreator(ADD_SETTING);
 export const removeSetting = makeActionCreator(REMOVE_SETTING, 'index');
 export const changeSettingName = makeActionCreator(CHANGE_SETTING_NAME, 'index', 'name');
 export const changeSettingValue = makeActionCreator(CHANGE_SETTING_VALUE, 'index', 'value');
 
-export const addWorkflow = makeActionCreator(ADD_WORKFLOW, 'name', 'activities');
+export const addWorkflow = makeActionCreator(ADD_WORKFLOW);
 export const removeWorkflow = makeActionCreator(REMOVE_WORKFLOW, 'index');
 export const changeWorkflowName = makeActionCreator(CHANGE_WORKFLOW_NAME, 'index', 'name');
