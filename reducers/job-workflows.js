@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import {
   ADD_WORKFLOW,
   REMOVE_WORKFLOW,
@@ -18,44 +20,45 @@ function activity(state = { name: '', arguments: [] }, action) {
   }
 }
 
-function workflow(state = { name: '', activities: [] }, action) {
+function workflowName(state = '', action) {
   switch (action.type) {
     case CHANGE_WORKFLOW_NAME:
-      return Object.assign({}, state, {
-        name: action.name,
-      });
-    case ADD_ACTIVITY:
-      // Pass undefined state to the activity reducer to get the default
-      // activity state.
-      return {
-        name: state.name,
-        activities: [
-          ...state.activities,
-          activity(undefined, action)
-        ]
-      };
-    case REMOVE_ACTIVITY:
-      return {
-        name: state.name,
-        activities: [
-          ...state.activities.slice(0, action.activityIndex),
-          ...state.activities.slice(action.activityIndex + 1)
-        ],
-      };
-    case CHANGE_ACTIVITY_NAME:
-      // Let the action flow down to the activity reducer.
-      return {
-        name: state.name,
-        activities: [
-          ...state.activities.slice(0, action.activityIndex),
-          activity(state[action.activityIndex], action),
-          ...state.activities.slice(action.activityIndex + 1)
-        ],
-      }
+      return action.name;
     default:
       return state;
   }
 }
+
+function workflowActivities(state = [], action) {
+  switch (action.type) {
+    case ADD_ACTIVITY:
+      // Pass undefined state to the activity reducer to get the default
+      // activity state.
+      return [
+        ...state,
+        activity(undefined, action)
+      ];
+    case REMOVE_ACTIVITY:
+      return [
+        ...state.slice(0, action.activityIndex),
+        ...state.slice(action.activityIndex + 1)
+      ];
+    case CHANGE_ACTIVITY_NAME:
+      // Let the action flow down to the activity reducer.
+      return [
+        ...state.slice(0, action.activityIndex),
+        activity(state[action.activityIndex], action),
+        ...state.slice(action.activityIndex + 1)
+      ];
+    default:
+      return state;
+  }
+}
+
+const workflow = combineReducers({
+  name: workflowName,
+  activities: workflowActivities,
+});
 
 export default function jobWorkflows(state = [], action) {
   switch (action.type) {
