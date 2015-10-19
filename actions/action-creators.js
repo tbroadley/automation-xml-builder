@@ -3,6 +3,7 @@ import {
   SET_JOB_DESCRIPTION,
   SET_JOB_SCHEDULE_TYPE,
   SET_JOB_SCHEDULE_ONE_TIME_DATE,
+  SET_JOB_SCHEDULE_DAILY_TIME,
   ADD_SETTING,
   REMOVE_SETTING,
   CHANGE_SETTING_NAME,
@@ -24,6 +25,7 @@ export const setJobDescription = makeActionCreator(SET_JOB_DESCRIPTION, 'descrip
 
 export const setJobScheduleType = makeActionCreator(SET_JOB_SCHEDULE_TYPE, 'scheduleType');
 export const setJobScheduleOneTimeDate = makeActionCreator(SET_JOB_SCHEDULE_ONE_TIME_DATE, 'scheduleOneTimeDate');
+export const setJobScheduleDailyTime = makeActionCreator(SET_JOB_SCHEDULE_DAILY_TIME, 'scheduleDailyTime')
 
 export function addSetting(name = '', value = '') {
   return {
