@@ -2,14 +2,40 @@ import React from 'react';
 
 import { ScheduleTypes } from '../actions/actions';
 
+class DateInput extends React.Component {
+  render() {
+    return (
+      <input
+        type='text'
+        value={this.props.getter.call(this.props.date)}
+        onChange={e => this.handleChange(e.target.value)}
+      />
+    );
+  }
+
+  handleChange(value) {
+    // The component's props should not be mutated. We create a new Date object
+    // with the same time, so that we can mutate it.
+    let copiedDate = new Date(this.props.date.getTime());
+    this.props.setter.call(copiedDate, value);
+    this.props.handleChange(copiedDate);
+  }
+}
+
 class DateSetter extends React.Component {
   render() {
     const date = this.props.date;
+    const onDateChange = this.props.onDateChange;
 
     return (
       <div>
         <div>
-          <input type='text' value={date.getFullYear()} />
+          <DateInput
+            date={date}
+            getter={Date.prototype.getFullYear}
+            setter={Date.prototype.setFullYear}
+            handleChange={onDateChange}
+          />
           -
           <input type='text' value={date.getMonth()} />
           -
@@ -43,7 +69,10 @@ export default class AppSettings extends React.Component {
             onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
           />
           One-Time
-          <DateSetter date={this.props.scheduleOneTimeDate} />
+          <DateSetter
+            date={this.props.scheduleOneTimeDate}
+            onDateChange={this.props.onOneTimeDateChange}
+          />
         </div>
         <div>
           <input

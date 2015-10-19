@@ -6,7 +6,11 @@ import JobName from './job-name';
 import JobSchedule from './job-schedule';
 import JobAttributes from './job-attributes';
 
-import { setJobName, setJobScheduleType } from "../actions/action-creators";
+import {
+  setJobName,
+  setJobScheduleType,
+  setJobScheduleOneTimeDate
+} from "../actions/action-creators";
 
 class App extends React.Component {
   render() {
@@ -27,6 +31,8 @@ class App extends React.Component {
           scheduleType={schedule.type}
           onSetScheduleType={type => dispatch(setJobScheduleType(type))}
           scheduleOneTimeDate={schedule.oneTimeDate}
+          onOneTimeDateChange={date =>
+            dispatch(setJobScheduleOneTimeDate(date))}
         />
         <JobAttributes />
       </div>
