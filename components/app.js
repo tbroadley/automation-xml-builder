@@ -18,6 +18,9 @@ import {
   removeSetting,
   changeSettingName,
   changeSettingValue,
+  addWorkflow,
+  removeWorkflow,
+  changeWorkflowName,
 } from "../actions/action-creators";
 
 class App extends React.Component {
@@ -28,6 +31,7 @@ class App extends React.Component {
       jobDescription,
       jobSettings,
       schedule,
+      jobAttributes,
     } = this.props;
 
     return (
@@ -61,7 +65,13 @@ class App extends React.Component {
           onChangeSettingValue={(index, value) =>
             dispatch(changeSettingValue(index, value))}
         />
-        <JobAttributes />
+        <JobAttributes
+          workflows={jobAttributes}
+          onAddWorkflow={() => dispatch(addWorkflow())}
+          onRemoveWorkflow={index => dispatch(removeWorkflow(index))}
+          onChangeWorkflowName={(index, name) =>
+            dispatch(changeWorkflowName(index, name))}
+        />
       </div>
     );
   }
@@ -78,7 +88,8 @@ function select(state) {
       type: state.jobSchedule.type,
       oneTimeDate: state.jobSchedule.oneTimeDate,
       dailyTime: state.jobSchedule.dailyTime,
-    }
+    },
+    jobAttributes: state.jobAttributes,
   };
 }
 
