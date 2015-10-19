@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ScheduleTypes } from '../actions/actions';
 
-class DateInput extends React.Component {
+class DateTimeInput extends React.Component {
   render() {
     return (
       <input
@@ -28,33 +28,24 @@ class DateSetter extends React.Component {
 
     return (
       <div>
-        <div>
-          {this.makeDateInput(d.getFullYear, d.setFullYear)}
-          -
-          {this.makeDateInput(
-            function() {
-              return this.getMonth() + 1;
-            },
-            function(x) {
-              this.setMonth(x - 1);
-            })}
-          -
-          {this.makeDateInput(d.getDate, d.setDate)}
-        </div>
-        <div>
-          {this.makeDateInput(d.getHours, d.setHours)}
-          :
-          {this.makeDateInput(d.getMinutes, d.setMinutes)}
-          :
-          {this.makeDateInput(d.getSeconds, d.setSeconds)}
-        </div>
+        {this.makeDateTimeInput(d.getFullYear, d.setFullYear)}
+        -
+        {this.makeDateTimeInput(
+          function() {
+            return this.getMonth() + 1;
+          },
+          function(x) {
+            this.setMonth(x - 1);
+          })}
+        -
+        {this.makeDateTimeInput(d.getDate, d.setDate)}
       </div>
     );
   }
 
-  makeDateInput(getter, setter) {
+  makeDateTimeInput(getter, setter) {
     return (
-      <DateInput
+      <DateTimeInput
         date={this.props.date}
         getter={getter}
         setter={setter}
@@ -63,6 +54,34 @@ class DateSetter extends React.Component {
     );
   }
 }
+
+class TimeSetter extends React.Component {
+  render() {
+    let d = Date.prototype;
+
+    return (
+      <div>
+        {this.makeDateTimeInput(d.getHours, d.setHours)}
+        :
+        {this.makeDateTimeInput(d.getMinutes, d.setMinutes)}
+        :
+        {this.makeDateTimeInput(d.getSeconds, d.setSeconds)}
+      </div>
+    );
+  }
+
+  makeDateTimeInput(getter, setter) {
+    return (
+      <DateTimeInput
+        date={this.props.time}
+        getter={getter}
+        setter={setter}
+        handleChange={this.props.onTimeChange}
+      />
+    );
+  }
+}
+
 
 export default class JobSchedule extends React.Component {
   render() {
@@ -83,6 +102,10 @@ export default class JobSchedule extends React.Component {
           <DateSetter
             date={this.props.scheduleOneTimeDate}
             onDateChange={this.props.onOneTimeDateChange}
+          />
+          <TimeSetter
+            time={this.props.scheduleOneTimeDate}
+            onTimeChange={this.props.onOneTimeDateChange}
           />
         </div>
         <div>
