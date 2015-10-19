@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import AppSettings from './app-settings';
 import JobName from './job-name';
+import JobSettings from './job-settings';
 import JobSchedule from './job-schedule';
 import JobAttributes from './job-attributes';
 
@@ -27,6 +28,7 @@ class App extends React.Component {
           name={jobName}
           onSetJobName={name => dispatch(setJobName(name))}
         />
+        <JobSettings />
         <JobSchedule
           scheduleType={schedule.type}
           onSetScheduleType={type => dispatch(setJobScheduleType(type))}
