@@ -36,5 +36,5 @@ export const changeSettingName = makeActionCreator(CHANGE_SETTING_NAME, 'index',
 export const changeSettingValue = makeActionCreator(CHANGE_SETTING_VALUE, 'index', 'value');
 
 export const addWorkflow = makeActionCreator(ADD_WORKFLOW);
-export const removeWorkflow = makeActionCreator(REMOVE_WORKFLOW, 'index');
-export const changeWorkflowName = makeActionCreator(CHANGE_WORKFLOW_NAME, 'index', 'name');
+export const removeWorkflow = makeActionCreator(REMOVE_WORKFLOW, 'workflowIndex');
+export const changeWorkflowName = makeActionCreator(CHANGE_WORKFLOW_NAME, 'workflowIndex', 'name');

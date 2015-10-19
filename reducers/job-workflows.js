@@ -26,14 +26,14 @@ export default function jobWorkflows(state = [], action) {
       ];
     case REMOVE_WORKFLOW:
       return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
+        ...state.slice(0, action.workflowIndex),
+        ...state.slice(action.workflowIndex + 1)
       ];
     case CHANGE_WORKFLOW_NAME:
       return [
-        ...state.slice(0, action.index),
-        workflow(state[action.index], action),
-        ...state.slice(action.index + 1)
+        ...state.slice(0, action.workflowIndex),
+        workflow(state[action.workflowIndex], action),
+        ...state.slice(action.workflowIndex + 1)
       ];
     default:
       return state;
