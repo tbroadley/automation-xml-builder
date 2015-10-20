@@ -99,6 +99,16 @@ export default class JobSchedule extends React.Component {
             onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
           />
           One-Time
+        </div>
+        <div>
+          <input
+            type='radio'
+            checked={!isOneTime}
+            onChange={() => this.props.onSetScheduleType(ScheduleTypes.DAILY)}
+          />
+          Daily
+        </div>
+        <div style={{ display: isOneTime ? 'initial' : 'none' }}>
           <DateSetter
             date={this.props.scheduleOneTimeDate}
             onDateChange={this.props.onOneTimeDateChange}
@@ -108,13 +118,7 @@ export default class JobSchedule extends React.Component {
             onTimeChange={this.props.onOneTimeDateChange}
           />
         </div>
-        <div>
-          <input
-            type='radio'
-            checked={!isOneTime}
-            onChange={() => this.props.onSetScheduleType(ScheduleTypes.DAILY)}
-          />
-          Daily
+        <div style={{ display: isOneTime ? 'none' : 'initial' }}>
           <TimeSetter
             time={this.props.scheduleDailyTime}
             onTimeChange={this.props.onDailyTimeChange}
