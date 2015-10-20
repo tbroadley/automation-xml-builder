@@ -69,6 +69,7 @@ class JobActivities extends React.Component {
               return (
                 <tr key={activityIndex}>
                   <td>
+                    <p>Activity name:</p>
                     <input
                       type='text'
                       value={el.name}
@@ -111,6 +112,7 @@ export default class JobWorkflows extends React.Component {
               return (
                 <tr key={index}>
                   <td>
+                    <p>Workflow name:</p>
                     <input
                       type='text'
                       value={el.name}
