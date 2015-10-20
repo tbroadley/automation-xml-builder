@@ -48,6 +48,80 @@ export function toObject(xml) {
 }
 
 export function toXML(obj) {
+  const oneTime = obj.jobSchedule.type === ScheduleTypes.ONE_TIME;
+  const businessDays = obj.jobSchedule.type === ScheduleTypes.DAILY;
+  const scheduleType = oneTime ? 'OneTime' : (
+    businessDays ? 'BusinessDays' : undefined
+  );
+
+  const jobTime = oneTime ? obj.jobSchedule.oneTimeDate : (
+    businessDays ? obj.jobSchedule.dailyTime : undefined
+  );
+
+  const jobTimeString = oneTime ? (
+    pad(jobTime.getFullYear()) + '-' +
+      pad(jobTime.getMonth() + 1) + '-' +
+      pad(jobTime.getDate()) + 'T' +
+      pad(jobTime.getHours()) + ':' +
+      pad(jobTime.getMinutes()) + ':' +
+      pad(jobTime.getSeconds())
+  ) : (
+    businessDays ? (
+      pad(jobTime.getHours()) + ':' +
+        pad(jobTime.getMinutes()) + ':' +
+        pad(jobTime.getSeconds())
+    ) : undefined
+  );
+
   let builder = new Builder();
-  return builder.buildObject(obj);
+  return builder.buildObject({
+    Job: {
+      $: {
+        Name: obj.jobName,
+        Description: obj.jobDescription,
+      },
+      Schedule: [{
+        ScheduleType: [
+          scheduleType
+        ],
+        ScheduleData: [
+          jobTimeString
+        ],
+      }],
+      Settings: [{
+        Setting: obj.jobSettings.map(el => ({
+          Name: el.name,
+          Value: el.value,
+        })),
+      }],
+      Workflow: obj.jobWorkflows.map(flow => ({
+        $: {
+          Name: flow.name,
+        },
+        Activities: [{
+          Activity: flow.activities.map(act => ({
+            $: {
+              Name: act.name,
+            },
+            Arguments: [{
+              Argument: act.arguments.map(arg => ({
+                Name: arg.name,
+                Value: arg.value,
+              })),
+            }],
+          })),
+        }],
+      })),
+    },
+  });
+}
+
+function pad(n, digits = 2) {
+  let nString = n.toString();
+
+  if (nString.length >= digits) {
+    return nString;
+  } else {
+    return '0'.repeat(digits - nString.length) + nString;
+  }
 }

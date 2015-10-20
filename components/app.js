@@ -32,7 +32,7 @@ import {
   changeArgumentValue,
 } from "../actions/action-creators";
 
-import { toObject } from '../parser/parser';
+import { toObject, toXML } from '../parser/parser';
 
 class App extends React.Component {
   render() {
@@ -54,6 +54,8 @@ class App extends React.Component {
         <AppSettings
           onFileUpload={xml => dispatch(uploadFile(toObject(xml)))}
           onClearAll={d(clearAll)}
+          downloadXML={toXML(this.props)}
+          jobName={jobName}
         />
         <JobName
           name={jobName}
