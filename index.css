@@ -5,13 +5,37 @@
   margin-bottom: 10px;
 }
 
-/* Children of top-level components that are div or table elements */
-#root > div > div > div, #root > div > div > table {
-  border: 1px #888 solid;
+/* Allows table rows to be styled with borders */
+table {
+  border-collapse: collapse;
+}
+
+/* Add border */
+#root > div > div > table tr {
+  border: 1px #AAA solid;
+}
+
+/* Padding for table cells */
+td {
   padding: 10px;
 }
 
-/* Children of top-level components except for the last child in each */
-#root > div > div > div:not(:last-child), #root > div > div > table:not(:last-child) {
+/* Margins between children of top-level components */
+#root > div > div > div:not(:last-child), #root > div > div table:not(:last-child) {
   margin-bottom: 10px;
+}
+
+/* Margin between name-value pairs in job settings and activity arguments */
+td > input {
+  margin-right: 10px;
+}
+
+/* Do not apply bottom margin to name-value pairs */
+td > input:not(:first-child):not(:last-child) {
+  margin-bottom: 10px;
+}
+
+/* Align remove buttons to the top of their table cells */
+td {
+  vertical-align: top;
 }
