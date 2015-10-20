@@ -1,12 +1,12 @@
 /* Top-level components (app settings, automation workflows, etc.) */
-body > div > div > div {
+#root > div > div {
   border: 1px #444 solid;
   padding: 10px;
   margin-bottom: 10px;
 }
 
 /* Children of top-level components that are div or table elements */
-body > div > div > div > div, body > div > div > div > table {
+#root > div > div > div, #root > div > div > table {
   border: 1px #888 solid;
   padding: 10px;
   margin-bottom: 10px;
