@@ -4,8 +4,9 @@ export default class AppSettings extends React.Component {
   render() {
     return (
       <div>
+        <h2>Application Settings</h2>
         <div>
-          <h2>Upload File</h2>
+          <h3>Upload File</h3>
           <input
             type='file'
             ref='fileInput'
