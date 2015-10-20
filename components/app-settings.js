@@ -4,12 +4,19 @@ export default class AppSettings extends React.Component {
   render() {
     return (
       <div>
-        <h2>Upload File</h2>
-        <input
-          type='file'
-          ref='fileInput'
-          onChange={e => this.handleUpload(e, this.props.onFileUpload)}
-        />
+        <div>
+          <h2>Upload File</h2>
+          <input
+            type='file'
+            ref='fileInput'
+            onChange={e => this.handleUpload(e, this.props.onFileUpload)}
+          />
+        </div>
+        <div>
+          <button onClick={this.props.onClearAll}>
+            Clear All
+          </button>
+        </div>
       </div>
     );
   }

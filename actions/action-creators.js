@@ -1,5 +1,6 @@
 import {
   UPLOAD_FILE,
+  CLEAR_ALL,
   SET_JOB_NAME,
   SET_JOB_DESCRIPTION,
   SET_JOB_SCHEDULE_TYPE,
@@ -32,6 +33,7 @@ function makeActionCreator(type, ...argNames) {
 }
 
 export const uploadFile = makeActionCreator(UPLOAD_FILE, 'parsedObject');
+export const clearAll = makeActionCreator(CLEAR_ALL);
 
 export const setJobName = makeActionCreator(SET_JOB_NAME, 'name');
 export const setJobDescription = makeActionCreator(SET_JOB_DESCRIPTION, 'description');

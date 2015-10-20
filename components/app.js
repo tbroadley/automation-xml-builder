@@ -10,6 +10,7 @@ import JobWorkflows from './job-workflows';
 
 import {
   uploadFile,
+  clearAll,
   setJobName,
   setJobDescription,
   setJobScheduleType,
@@ -52,6 +53,7 @@ class App extends React.Component {
       <div>
         <AppSettings
           onFileUpload={xml => dispatch(uploadFile(toObject(xml)))}
+          onClearAll={d(clearAll)}
         />
         <JobName
           name={jobName}
