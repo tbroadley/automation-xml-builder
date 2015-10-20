@@ -14,7 +14,7 @@ var w = watchify(b);
 
 // Check if the build should be done in development mode.
 // The development build includes redux-devtools.
-var devMode = process.argv.length > 2 && process.argv[2] === 'dev';
+var devMode = process.argv.indexOf('dev') !== -1;
 
 if (devMode) {
   w.add('index.dev.js');
