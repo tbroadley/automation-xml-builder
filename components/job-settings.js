@@ -5,7 +5,7 @@ export default class JobSettings extends React.Component {
     return (
       <div>
         <h2>Automation Settings</h2>
-        <table>
+        <table style={{ display: this.props.settings.length > 0 ? '' : 'none' }}>
           <tbody>
             {this.props.settings.map((el, index) => {
               return (

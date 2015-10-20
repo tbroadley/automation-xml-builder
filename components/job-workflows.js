@@ -7,7 +7,7 @@ class JobArguments extends React.Component {
 
     return (
       <div>
-        <table>
+        <table style={{ display: this.props.arguments.length > 0 ? '' : 'none' }}>
           <tbody>
             {this.props.arguments.map((el, argumentIndex) => {
               return (
@@ -63,7 +63,7 @@ class JobActivities extends React.Component {
 
     return (
       <div>
-        <table>
+        <table style={{ display: this.props.activities.length > 0 ? '' : 'none' }}>
           <tbody>
             {this.props.activities.map((el, activityIndex) => {
               return (
@@ -105,7 +105,7 @@ export default class JobWorkflows extends React.Component {
     return (
       <div>
         <h2>Automation Workflows</h2>
-        <table>
+        <table style={{ display: this.props.workflows.length > 0 ? '' : 'none' }}>
           <tbody>
             {this.props.workflows.map((el, index) => {
               return (
