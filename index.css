@@ -1,8 +1,11 @@
 /* Top-level components (app settings, automation workflows, etc.) */
 #root > div > div {
-  border: 1px #444 solid;
   padding: 10px;
-  margin-bottom: 10px;
+}
+
+/* Border between top-level components */
+#root > div > div:not(:last-child) {
+  border-bottom: 1px #666 solid;
 }
 
 /* Allows table rows to be styled with borders */
