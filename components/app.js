@@ -41,7 +41,7 @@ class App extends React.Component {
       jobName,
       jobDescription,
       jobSettings,
-      schedule,
+      jobSchedule,
       jobWorkflows,
     } = this.props;
 
@@ -64,11 +64,11 @@ class App extends React.Component {
           onSetJobDescription={d(setJobDescription)}
         />
         <JobSchedule
-          scheduleType={schedule.type}
+          scheduleType={jobSchedule.type}
           onSetScheduleType={d(setJobScheduleType)}
-          scheduleOneTimeDate={schedule.oneTimeDate}
+          scheduleOneTimeDate={jobSchedule.oneTimeDate}
           onOneTimeDateChange={d(setJobScheduleOneTimeDate)}
-          scheduleDailyTime={schedule.dailyTime}
+          scheduleDailyTime={jobSchedule.dailyTime}
           onDailyTimeChange={d(setJobScheduleDailyTime)}
         />
         <JobSettings
@@ -96,21 +96,6 @@ class App extends React.Component {
   }
 }
 
-// This function takes the state in the Redux store and turns it into a set of
-// props for the top-level React component.
-function select(state) {
-  return {
-    jobName: state.jobName,
-    jobDescription: state.jobDescription,
-    jobSettings: state.jobSettings,
-    schedule: {
-      type: state.jobSchedule.type,
-      oneTimeDate: state.jobSchedule.oneTimeDate,
-      dailyTime: state.jobSchedule.dailyTime,
-    },
-    jobWorkflows: state.jobWorkflows,
-  };
-}
-
 // Connect the React top-level component to the Redux store.
-export default connect(select)(App);
+// TODO: use reselect.
+export default connect(x => x)(App);
