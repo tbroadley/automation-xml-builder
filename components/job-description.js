@@ -4,7 +4,7 @@ export default class JobDescription extends React.Component {
   render() {
     return (
       <div>
-        <h2>Automation Name</h2>
+        <h2>Automation Description</h2>
         <input
           type="text"
           value={this.props.description}
