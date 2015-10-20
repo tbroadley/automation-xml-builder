@@ -8,10 +8,6 @@ body > div > div > div {
 /* Children of top-level components that are div or table elements */
 body > div > div > div > div, body > div > div > div > table {
   border: 1px #888 solid;
-}
-
-/* Children of top-level components that are not h2 elements */
-body > div > div > div > :not(h2) {
   padding: 10px;
   margin-bottom: 10px;
 }
