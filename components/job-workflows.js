@@ -8,41 +8,43 @@ class JobArguments extends React.Component {
     return (
       <div>
         <table>
-          {this.props.arguments.map((el, argumentIndex) => {
-            return (
-              <tr key={argumentIndex}>
-                <td>
-                  <input
-                    type='text'
-                    value={el.name}
-                    onChange={e => this.props.onChangeArgumentName(
-                      workflowIndex,
-                      activityIndex,
-                      argumentIndex,
-                      e.target.value)}
-                  />
-                  <input
-                    type='text'
-                    value={el.value}
-                    onChange={e => this.props.onChangeArgumentValue(
-                      workflowIndex,
-                      activityIndex,
-                      argumentIndex,
-                      e.target.value)}
-                  />
-                </td>
-                <td>
-                  <button onClick={() => this.props.onRemoveArgument(
-                      workflowIndex,
-                      activityIndex,
-                      argumentIndex
-                  )}>
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          <tbody>
+            {this.props.arguments.map((el, argumentIndex) => {
+              return (
+                <tr key={argumentIndex}>
+                  <td>
+                    <input
+                      type='text'
+                      value={el.name}
+                      onChange={e => this.props.onChangeArgumentName(
+                        workflowIndex,
+                        activityIndex,
+                        argumentIndex,
+                        e.target.value)}
+                    />
+                    <input
+                      type='text'
+                      value={el.value}
+                      onChange={e => this.props.onChangeArgumentValue(
+                        workflowIndex,
+                        activityIndex,
+                        argumentIndex,
+                        e.target.value)}
+                    />
+                  </td>
+                  <td>
+                    <button onClick={() => this.props.onRemoveArgument(
+                        workflowIndex,
+                        activityIndex,
+                        argumentIndex
+                    )}>
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
         <button onClick={() => this.props.onAddArgument(
             workflowIndex,
@@ -62,33 +64,35 @@ class JobActivities extends React.Component {
     return (
       <div>
         <table>
-          {this.props.activities.map((el, activityIndex) => {
-            return (
-              <tr key={activityIndex}>
-                <td>
-                  <input
-                    type='text'
-                    value={el.name}
-                    onChange={e => this.props.onChangeActivityName(workflowIndex, activityIndex, e.target.value)}
-                  />
-                  <JobArguments
-                    workflowIndex={workflowIndex}
-                    activityIndex={activityIndex}
-                    arguments={el.arguments}
-                    onAddArgument={this.props.onAddArgument}
-                    onRemoveArgument={this.props.onRemoveArgument}
-                    onChangeArgumentName={this.props.onChangeArgumentName}
-                    onChangeArgumentValue={this.props.onChangeArgumentValue}
-                  />
-                </td>
-                <td>
-                  <button onClick={() => this.props.onRemoveActivity(workflowIndex, activityIndex)}>
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          <tbody>
+            {this.props.activities.map((el, activityIndex) => {
+              return (
+                <tr key={activityIndex}>
+                  <td>
+                    <input
+                      type='text'
+                      value={el.name}
+                      onChange={e => this.props.onChangeActivityName(workflowIndex, activityIndex, e.target.value)}
+                    />
+                    <JobArguments
+                      workflowIndex={workflowIndex}
+                      activityIndex={activityIndex}
+                      arguments={el.arguments}
+                      onAddArgument={this.props.onAddArgument}
+                      onRemoveArgument={this.props.onRemoveArgument}
+                      onChangeArgumentName={this.props.onChangeArgumentName}
+                      onChangeArgumentValue={this.props.onChangeArgumentValue}
+                    />
+                  </td>
+                  <td>
+                    <button onClick={() => this.props.onRemoveActivity(workflowIndex, activityIndex)}>
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
         <button onClick={() => this.props.onAddActivity(workflowIndex)}>Add Activity</button>
       </div>
@@ -102,35 +106,37 @@ export default class JobWorkflows extends React.Component {
       <div>
         <h2>Automation Workflows</h2>
         <table>
-          {this.props.workflows.map((el, index) => {
-            return (
-              <tr key={index}>
-                <td>
-                  <input
-                    type='text'
-                    value={el.name}
-                    onChange={e => this.props.onChangeWorkflowName(index, e.target.value)}
-                  />
-                  <JobActivities
-                    workflowIndex={index}
-                    activities={el.activities}
-                    onAddActivity={this.props.onAddActivity}
-                    onRemoveActivity={this.props.onRemoveActivity}
-                    onChangeActivityName={this.props.onChangeActivityName}
-                    onAddArgument={this.props.onAddArgument}
-                    onRemoveArgument={this.props.onRemoveArgument}
-                    onChangeArgumentName={this.props.onChangeArgumentName}
-                    onChangeArgumentValue={this.props.onChangeArgumentValue}
-                  />
-                </td>
-                <td>
-                  <button onClick={() => this.props.onRemoveWorkflow(index)}>
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          <tbody>
+            {this.props.workflows.map((el, index) => {
+              return (
+                <tr key={index}>
+                  <td>
+                    <input
+                      type='text'
+                      value={el.name}
+                      onChange={e => this.props.onChangeWorkflowName(index, e.target.value)}
+                    />
+                    <JobActivities
+                      workflowIndex={index}
+                      activities={el.activities}
+                      onAddActivity={this.props.onAddActivity}
+                      onRemoveActivity={this.props.onRemoveActivity}
+                      onChangeActivityName={this.props.onChangeActivityName}
+                      onAddArgument={this.props.onAddArgument}
+                      onRemoveArgument={this.props.onRemoveArgument}
+                      onChangeArgumentName={this.props.onChangeArgumentName}
+                      onChangeArgumentValue={this.props.onChangeArgumentValue}
+                    />
+                  </td>
+                  <td>
+                    <button onClick={() => this.props.onRemoveWorkflow(index)}>
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
         <button onClick={this.props.onAddWorkflow}>Add Workflow</button>
       </div>
