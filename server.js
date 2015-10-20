@@ -19,7 +19,7 @@ var devMode = process.argv.indexOf('dev') !== -1;
 if (devMode) {
   w.add('index.dev.js');
   console.log('Building in development mode.')
-  console.log('The development build includes redux-devtools.')
+  console.log('The development build includes redux-devtools and react-addons-perf.')
 } else {
   w.add('index.js');
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Perf from 'react-addons-perf';
 
 import { compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -30,3 +31,5 @@ render(
   </div>,
   document.getElementById('root')
 );
+
+window.Perf = Perf;
