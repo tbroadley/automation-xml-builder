@@ -1,4 +1,5 @@
 import {
+  UPLOAD_FILE,
   SET_JOB_NAME,
   SET_JOB_DESCRIPTION,
   SET_JOB_SCHEDULE_TYPE,
@@ -29,6 +30,8 @@ function makeActionCreator(type, ...argNames) {
     return action;
   };
 }
+
+export const uploadFile = makeActionCreator(UPLOAD_FILE, 'parsedObject');
 
 export const setJobName = makeActionCreator(SET_JOB_NAME, 'name');
 export const setJobDescription = makeActionCreator(SET_JOB_DESCRIPTION, 'description');

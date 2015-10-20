@@ -1,3 +1,5 @@
+export const UPLOAD_FILE = 'UPLOAD_FILE';
+
 export const SET_JOB_NAME = 'SET_JOB_NAME';
 export const SET_JOB_DESCRIPTION = 'SET_JOB_DESCRIPTION';
 

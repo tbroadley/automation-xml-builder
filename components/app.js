@@ -9,6 +9,7 @@ import JobSchedule from './job-schedule';
 import JobWorkflows from './job-workflows';
 
 import {
+  uploadFile,
   setJobName,
   setJobDescription,
   setJobScheduleType,
@@ -30,6 +31,8 @@ import {
   changeArgumentValue,
 } from "../actions/action-creators";
 
+import { toObject } from '../parser/parser';
+
 class App extends React.Component {
   render() {
     const {
@@ -47,7 +50,9 @@ class App extends React.Component {
 
     return (
       <div>
-        <AppSettings />
+        <AppSettings
+          onFileUpload={xml => dispatch(uploadFile(toObject(xml)))}
+        />
         <JobName
           name={jobName}
           onSetJobName={d(setJobName)}
