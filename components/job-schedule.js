@@ -108,7 +108,7 @@ export default class JobSchedule extends React.Component {
           />
           Daily
         </div>
-        <div style={{ display: isOneTime ? 'initial' : 'none' }}>
+        <div style={{ display: isOneTime ? '' : 'none' }}>
           <DateSetter
             date={this.props.scheduleOneTimeDate}
             onDateChange={this.props.onOneTimeDateChange}
@@ -118,7 +118,7 @@ export default class JobSchedule extends React.Component {
             onTimeChange={this.props.onOneTimeDateChange}
           />
         </div>
-        <div style={{ display: isOneTime ? 'none' : 'initial' }}>
+        <div style={{ display: isOneTime ? 'none' : '' }}>
           <TimeSetter
             time={this.props.scheduleDailyTime}
             onTimeChange={this.props.onDailyTimeChange}
