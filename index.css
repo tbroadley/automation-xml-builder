@@ -9,5 +9,9 @@
 #root > div > div > div, #root > div > div > table {
   border: 1px #888 solid;
   padding: 10px;
+}
+
+/* Children of top-level components except for the last child in each */
+#root > div > div > div:not(:last-child), #root > div > div > table:not(:last-child) {
   margin-bottom: 10px;
 }
