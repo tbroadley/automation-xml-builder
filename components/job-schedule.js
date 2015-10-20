@@ -99,8 +99,7 @@ export default class JobSchedule extends React.Component {
             onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
           />
           One-Time
-        </div>
-        <div>
+          <br />
           <input
             type='radio'
             checked={!isOneTime}
