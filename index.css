@@ -23,8 +23,8 @@ td {
   padding: 10px;
 }
 
-/* Margins between children of top-level components */
-#app-root > div > div:not(:last-child), #app-root > div > table:not(:last-child) {
+/* Margins between tables and div children of top-level components  */
+table:not(:last-child), #app-root > div > div:not(:last-child) {
   margin-bottom: 10px;
 }
 
