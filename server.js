@@ -10,20 +10,21 @@ const PORT = 8080;
 
 // Set up the watchify build.
 var b = browserify({ cache: {}, packageCache: {} });
-var w = watchify(b);
 
 // Check if the build should be done in development mode.
 // The development build includes redux-devtools.
 var devMode = process.argv.indexOf('dev') !== -1;
 
 if (devMode) {
-  w.add('index.dev.js');
+  b.add('index.dev.js');
   console.log('Building in development mode.')
   console.log('The development build includes redux-devtools and react-addons-perf.')
 } else {
-  w.add('index.js');
+  b.add('index.js');
+  b.plugin('minifyify', { map: false });
 }
 
+var w = watchify(b);
 
 w.on('update', function() {
   w.bundle()
