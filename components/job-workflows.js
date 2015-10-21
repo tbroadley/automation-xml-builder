@@ -82,10 +82,9 @@ class JobActivities extends React.Component {
                 <tr key={el.id}>
                   <td>
                     <p>Activity name:</p>
-                    <input
-                      type='text'
+                    <FastTextInput
                       value={el.name}
-                      onChange={e => this.props.onChangeActivityName(workflowIndex, activityIndex, e.target.value)}
+                      onChange={value => this.props.onChangeActivityName(workflowIndex, activityIndex, value)}
                     />
                     <JobArguments
                       workflowIndex={workflowIndex}
@@ -125,10 +124,9 @@ export default class JobWorkflows extends React.Component {
                 <tr key={el.id}>
                   <td>
                     <p>Workflow name:</p>
-                    <input
-                      type='text'
+                    <FastTextInput
                       value={el.name}
-                      onChange={e => this.props.onChangeWorkflowName(index, e.target.value)}
+                      onChange={value => this.props.onChangeWorkflowName(index, value)}
                     />
                     <JobActivities
                       workflowIndex={index}

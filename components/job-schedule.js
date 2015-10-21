@@ -2,13 +2,14 @@ import React from 'react';
 
 import { ScheduleTypes } from '../actions/actions';
 
+import FastTextInput from './fast-text-input';
+
 class DateTimeInput extends React.Component {
   render() {
     return (
-      <input
-        type='text'
+      <FastTextInput
         value={this.props.getter.call(this.props.date)}
-        onChange={e => this.handleChange(e.target.value)}
+        onChange={value => this.handleChange(value)}
       />
     );
   }

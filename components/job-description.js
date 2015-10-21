@@ -1,14 +1,15 @@
 import React from 'react';
 
+import FastTextInput from './fast-text-input';
+
 export default class JobDescription extends React.Component {
   render() {
     return (
       <div>
         <h2>Automation Description</h2>
-        <input
-          type="text"
+        <FastTextInput
           value={this.props.description}
-          onChange={e => this.props.onSetJobDescription(e.target.value)}
+          onChange={value => this.props.onSetJobDescription(value)}
         />
       </div>
     );
