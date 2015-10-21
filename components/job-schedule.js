@@ -126,4 +126,12 @@ export default class JobSchedule extends React.Component {
       </div>
     );
   }
+
+  shouldComponentUpdate(nextProps) {
+    return !(
+      this.props.scheduleType === nextProps.scheduleType &&
+      this.props.scheduleOneTimeDate.getTime() === nextProps.scheduleOneTimeDate.getTime() &&
+      this.props.scheduleDailyTime.getTime() === nextProps.scheduleDailyTime.getTime()
+    );
+  }
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import assert from 'assert';
+
 class JobArguments extends React.Component {
   render() {
     let workflowIndex = this.props.workflowIndex;
@@ -54,6 +56,16 @@ class JobArguments extends React.Component {
         </button>
       </div>
     );
+  }
+
+  shouldComponentUpdate(newProps) {
+    // TODO: use deep-equal package instead
+    try {
+      assert.deepEqual(this.props.arguments, newProps.arguments);
+      return false;
+    } catch(err) {
+      return true;
+    }
   }
 }
 
