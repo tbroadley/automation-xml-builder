@@ -50,7 +50,7 @@ class App extends React.Component {
     }
 
     return (
-      <div>
+      <div id='app-root'>
         <AppSettings
           onFileUpload={xml => dispatch(uploadFile(toObject(xml)))}
           onClearAll={d(clearAll)}

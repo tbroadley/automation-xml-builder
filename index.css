@@ -1,10 +1,10 @@
 /* Top-level components (app settings, automation workflows, etc.) */
-#root > div > div {
+#app-root > div {
   padding: 10px;
 }
 
 /* Border between top-level components */
-#root > div > div:not(:last-child) {
+#app-root > div:not(:last-child) {
   border-bottom: 1px #666 solid;
 }
 
@@ -14,7 +14,7 @@ table {
 }
 
 /* Add border */
-#root > div > div > table tr {
+#app-root > div > table tr {
   border: 1px #AAA solid;
 }
 
@@ -24,7 +24,7 @@ td {
 }
 
 /* Margins between children of top-level components */
-#root > div > div > div:not(:last-child), #root > div > div table:not(:last-child) {
+#app-root > div > div:not(:last-child), #app-root > div > table:not(:last-child) {
   margin-bottom: 10px;
 }
 
