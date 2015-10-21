@@ -24,6 +24,7 @@ import {
 
 import { getNextIDAndIncrement } from '../id-generator/id-generator';
 
+// Given a type and a series of argument names, creates an action creator.
 function makeActionCreator(type, ...argNames) {
   return function(...args) {
     let action = { type };
@@ -34,6 +35,8 @@ function makeActionCreator(type, ...argNames) {
   };
 }
 
+// Same as makeActionCreator, but also adds a unique ID (generated in
+// id-generator.js) to the object.
 function makeActionCreatorWithID(type, ...argNames) {
   return function(...args) {
     let action = { type };

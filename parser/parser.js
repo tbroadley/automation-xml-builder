@@ -4,6 +4,7 @@ import { ScheduleTypes } from '../actions/actions';
 
 import { getNextIDAndIncrement } from '../id-generator/id-generator';
 
+// Turns an XML string into a JS object that is compatible with the Redux store.
 export function toObject(xml) {
   let obj = {};
 
@@ -53,6 +54,7 @@ export function toObject(xml) {
   };
 }
 
+// Turns a JS object from the Redux store into an XML string.
 export function toXML(obj) {
   const oneTime = obj.jobSchedule.type === ScheduleTypes.ONE_TIME;
   const businessDays = obj.jobSchedule.type === ScheduleTypes.DAILY;
@@ -79,8 +81,7 @@ export function toXML(obj) {
     ) : undefined
   );
 
-  let builder = new Builder();
-  return builder.buildObject({
+  return new Builder().buildObject({
     Job: {
       $: {
         Name: obj.jobName,
@@ -122,6 +123,8 @@ export function toXML(obj) {
   });
 }
 
+// Given a number and a number of digits, pads the start of the number with
+// zeros until it has at least that number of digits.
 function pad(n, digits = 2) {
   let nString = n.toString();
 

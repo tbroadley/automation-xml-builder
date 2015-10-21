@@ -32,4 +32,12 @@ render(
   document.getElementById('root')
 );
 
+// Make the React performance tools available in the browser.
+// Usage:
+//   1. Call Perf.start() in the console
+//   2. Modify the application state (e.g. upload an XML file, add or remove a
+//      workflow, change a date)
+//   3. Call Perf.stop() in the console
+//   4. Call any of Perf's display functions (e.g. Perf.printInclusive() or
+///     Perf.printDOM()) in the console
 window.Perf = Perf;

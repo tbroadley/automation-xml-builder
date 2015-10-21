@@ -13,7 +13,7 @@ table {
   border-collapse: collapse;
 }
 
-/* Add border */
+/* Add border around table rows */
 #app-root > div > table tr {
   border: 1px #AAA solid;
 }

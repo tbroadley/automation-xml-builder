@@ -19,6 +19,7 @@ function argument(state = { name: '', value: '' }, action) {
       return Object.assign({}, state, { name: action.name });
     case CHANGE_ARGUMENT_VALUE:
       return Object.assign({}, state, { value: action.value });
+    // Add the ID specified in the action to the default state.
     case ADD_ARGUMENT:
       return Object.assign({}, state, { id: action.id });
     default:
@@ -75,7 +76,7 @@ const activity = combineReducers({
   name: activityName,
   arguments: activityArguments,
   id: activityID,
-})
+});
 
 function workflowName(state = '', action) {
   switch (action.type) {

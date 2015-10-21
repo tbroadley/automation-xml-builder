@@ -16,7 +16,7 @@ function type(state = ScheduleTypes.ONE_TIME, action) {
   }
 }
 
-// The default run time for a one-time automation is now.
+// The default run time for a one-time automation is the current time.
 function oneTimeDate(state = new Date(), action) {
   switch (action.type) {
     case SET_JOB_SCHEDULE_ONE_TIME_DATE:
@@ -26,7 +26,7 @@ function oneTimeDate(state = new Date(), action) {
   }
 }
 
-// The time is represented as a date. The year, month, and date are ignored.
+// The time is represented as a date. The year, month, and day are ignored.
 // The default run time for a daily automation is the current time.
 function dailyTime(state = new Date(), action) {
   switch (action.type) {

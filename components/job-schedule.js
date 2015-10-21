@@ -83,7 +83,6 @@ class TimeSetter extends React.Component {
   }
 }
 
-
 export default class JobSchedule extends React.Component {
   render() {
     let isOneTime = this.props.scheduleType === ScheduleTypes.ONE_TIME;

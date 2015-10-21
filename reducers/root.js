@@ -20,6 +20,7 @@ const root = function(state = {}, action) {
   switch (action.type) {
     case UPLOAD_FILE:
       return action.parsedObject;
+    // Return the default state.
     case CLEAR_ALL:
       return rootNoFileUpload({}, action);
     default:

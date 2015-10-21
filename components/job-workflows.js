@@ -25,14 +25,14 @@ class JobArguments extends React.Component {
                         argumentIndex,
                         value)}
                     />
-                  <FastTextInput
-                      value={el.value}
-                      onChange={value => this.props.onChangeArgumentValue(
-                        workflowIndex,
-                        activityIndex,
-                        argumentIndex,
-                        value)}
-                    />
+                    <FastTextInput
+                        value={el.value}
+                        onChange={value => this.props.onChangeArgumentValue(
+                          workflowIndex,
+                          activityIndex,
+                          argumentIndex,
+                          value)}
+                      />
                   </td>
                   <td>
                     <button onClick={() => this.props.onRemoveArgument(

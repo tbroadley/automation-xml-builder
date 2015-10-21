@@ -26,8 +26,8 @@ export const REMOVE_ARGUMENT = 'REMOVE_ARGUMENT';
 export const CHANGE_ARGUMENT_NAME = 'CHANGE_ARGUMENT_NAME';
 export const CHANGE_ARGUMENT_VALUE = 'CHANGE_ARGUMENT_VALUE';
 
-// Automations are either run once, or are scheduled to run once a day at a
-// specific time.
+// Automations are either run once, or are scheduled to run every business day
+// at a specific time.
 export const ScheduleTypes = {
   DAILY: 'DAILY',
   ONE_TIME: 'ONE_TIME',
