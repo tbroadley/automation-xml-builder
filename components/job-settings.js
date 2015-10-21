@@ -1,5 +1,7 @@
 import React from 'react';
 
+import FastTextInput from './fast-text-input';
+
 export default class JobSettings extends React.Component {
   render() {
     return (
@@ -11,19 +13,17 @@ export default class JobSettings extends React.Component {
               return (
                 <tr key={el.id}>
                   <td>
-                    <input
-                      type='text'
+                    <FastTextInput
                       value={el.name}
-                      onChange={e =>
-                        this.props.onChangeSettingName(index, e.target.value)}
+                      onChange={value =>
+                        this.props.onChangeSettingName(index, value)}
                     />
                   </td>
                   <td>
-                    <input
-                      type='text'
+                    <FastTextInput
                       value={el.value}
-                      onChange={e =>
-                        this.props.onChangeSettingValue(index, e.target.value)}
+                      onChange={value =>
+                        this.props.onChangeSettingValue(index, value)}
                     />
                   </td>
                   <td>

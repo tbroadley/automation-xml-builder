@@ -2,6 +2,8 @@ import React from 'react';
 
 import assert from 'assert';
 
+import FastTextInput from './fast-text-input';
+
 class JobArguments extends React.Component {
   render() {
     let workflowIndex = this.props.workflowIndex;
@@ -15,23 +17,21 @@ class JobArguments extends React.Component {
               return (
                 <tr key={el.id}>
                   <td>
-                    <input
-                      type='text'
+                    <FastTextInput
                       value={el.name}
-                      onChange={e => this.props.onChangeArgumentName(
+                      onChange={value => this.props.onChangeArgumentName(
                         workflowIndex,
                         activityIndex,
                         argumentIndex,
-                        e.target.value)}
+                        value)}
                     />
-                    <input
-                      type='text'
+                  <FastTextInput
                       value={el.value}
-                      onChange={e => this.props.onChangeArgumentValue(
+                      onChange={value => this.props.onChangeArgumentValue(
                         workflowIndex,
                         activityIndex,
                         argumentIndex,
-                        e.target.value)}
+                        value)}
                     />
                   </td>
                   <td>
