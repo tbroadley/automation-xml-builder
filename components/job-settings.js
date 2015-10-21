@@ -9,7 +9,7 @@ export default class JobSettings extends React.Component {
           <tbody>
             {this.props.settings.map((el, index) => {
               return (
-                <tr key={index}>
+                <tr key={el.id}>
                   <td>
                     <input
                       type='text'

@@ -2,6 +2,8 @@ import { parseString, Builder } from 'xml2js';
 
 import { ScheduleTypes } from '../actions/actions';
 
+import { getNextIDAndIncrement } from '../id-generator/id-generator';
+
 export function toObject(xml) {
   let obj = {};
 
@@ -32,15 +34,19 @@ export function toObject(xml) {
     },
     jobSettings: obj.Job.Settings[0].Setting.map(el => ({
       name: el.Name[0],
+      id: getNextIDAndIncrement(),
       value: el.Value[0],
     })),
     jobWorkflows: [{
       name: obj.Job.Workflow[0].$.Name,
+      id: getNextIDAndIncrement(),
       activities: obj.Job.Workflow[0].Activities[0].Activity.map(el => ({
         name: el.$.Name,
+        id: getNextIDAndIncrement(),
         arguments: el.Arguments[0].Argument.map(el => ({
           name: el.Name[0],
           value: el.Value[0],
+          id: getNextIDAndIncrement(),
         })),
       })),
     }],

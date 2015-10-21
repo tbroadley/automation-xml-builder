@@ -22,6 +22,8 @@ import {
   CHANGE_ARGUMENT_VALUE,
 } from './actions';
 
+import { getNextIDAndIncrement } from '../id-generator/id-generator';
+
 function makeActionCreator(type, ...argNames) {
   return function(...args) {
     let action = { type };
@@ -30,6 +32,17 @@ function makeActionCreator(type, ...argNames) {
     });
     return action;
   };
+}
+
+function makeActionCreatorWithID(type, ...argNames) {
+  return function(...args) {
+    let action = { type };
+    argNames.forEach((arg, index) => {
+      action[argNames[index]] = args[index];
+    });
+    action['id'] = getNextIDAndIncrement();
+    return action;
+  }
 }
 
 export const uploadFile = makeActionCreator(UPLOAD_FILE, 'parsedObject');
@@ -42,20 +55,20 @@ export const setJobScheduleType = makeActionCreator(SET_JOB_SCHEDULE_TYPE, 'sche
 export const setJobScheduleOneTimeDate = makeActionCreator(SET_JOB_SCHEDULE_ONE_TIME_DATE, 'scheduleOneTimeDate');
 export const setJobScheduleDailyTime = makeActionCreator(SET_JOB_SCHEDULE_DAILY_TIME, 'scheduleDailyTime')
 
-export const addSetting = makeActionCreator(ADD_SETTING);
+export const addSetting = makeActionCreatorWithID(ADD_SETTING);
 export const removeSetting = makeActionCreator(REMOVE_SETTING, 'index');
 export const changeSettingName = makeActionCreator(CHANGE_SETTING_NAME, 'index', 'name');
 export const changeSettingValue = makeActionCreator(CHANGE_SETTING_VALUE, 'index', 'value');
 
-export const addWorkflow = makeActionCreator(ADD_WORKFLOW);
+export const addWorkflow = makeActionCreatorWithID(ADD_WORKFLOW);
 export const removeWorkflow = makeActionCreator(REMOVE_WORKFLOW, 'workflowIndex');
 export const changeWorkflowName = makeActionCreator(CHANGE_WORKFLOW_NAME, 'workflowIndex', 'name');
 
-export const addActivity = makeActionCreator(ADD_ACTIVITY, 'workflowIndex');
+export const addActivity = makeActionCreatorWithID(ADD_ACTIVITY, 'workflowIndex');
 export const removeActivity = makeActionCreator(REMOVE_ACTIVITY, 'workflowIndex', 'activityIndex');
 export const changeActivityName = makeActionCreator(CHANGE_ACTIVITY_NAME, 'workflowIndex', 'activityIndex', 'name');
 
-export const addArgument = makeActionCreator(ADD_ARGUMENT, 'workflowIndex', 'activityIndex');
+export const addArgument = makeActionCreatorWithID(ADD_ARGUMENT, 'workflowIndex', 'activityIndex');
 export const removeArgument = makeActionCreator(REMOVE_ARGUMENT, 'workflowIndex', 'activityIndex', 'argumentIndex');
 export const changeArgumentName = makeActionCreator(
   CHANGE_ARGUMENT_NAME,

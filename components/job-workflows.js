@@ -11,7 +11,7 @@ class JobArguments extends React.Component {
           <tbody>
             {this.props.arguments.map((el, argumentIndex) => {
               return (
-                <tr key={argumentIndex}>
+                <tr key={el.id}>
                   <td>
                     <input
                       type='text'
@@ -67,7 +67,7 @@ class JobActivities extends React.Component {
           <tbody>
             {this.props.activities.map((el, activityIndex) => {
               return (
-                <tr key={activityIndex}>
+                <tr key={el.id}>
                   <td>
                     <p>Activity name:</p>
                     <input
@@ -110,7 +110,7 @@ export default class JobWorkflows extends React.Component {
           <tbody>
             {this.props.workflows.map((el, index) => {
               return (
-                <tr key={index}>
+                <tr key={el.id}>
                   <td>
                     <p>Workflow name:</p>
                     <input

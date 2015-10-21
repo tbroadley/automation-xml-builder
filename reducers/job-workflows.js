@@ -13,7 +13,6 @@ import {
   CHANGE_ARGUMENT_VALUE,
 } from '../actions/actions'
 
-
 function argument(state = { name: '', value: '' }, action) {
   switch (action.type) {
     case CHANGE_ARGUMENT_NAME:
@@ -26,6 +25,8 @@ function argument(state = { name: '', value: '' }, action) {
         name: state.name,
         value: action.value,
       };
+    case ADD_ARGUMENT:
+      return Object.assign({}, state, { id: action.id });
     default:
       return state;
   }
@@ -67,9 +68,19 @@ function activityArguments(state = [], action) {
   }
 }
 
+function activityID(state = 0, action) {
+  switch (action.type) {
+    case ADD_ACTIVITY:
+      return action.id;
+    default:
+      return state;
+  }
+}
+
 const activity = combineReducers({
   name: activityName,
   arguments: activityArguments,
+  id: activityID,
 })
 
 function workflowName(state = '', action) {
@@ -111,9 +122,19 @@ function workflowActivities(state = [], action) {
   }
 }
 
+function workflowID(state = 0, action) {
+  switch (action.type) {
+    case ADD_WORKFLOW:
+      return action.id;
+    default:
+      return state;
+  }
+}
+
 const workflow = combineReducers({
   name: workflowName,
   activities: workflowActivities,
+  id: workflowID,
 });
 
 export default function jobWorkflows(state = [], action) {
