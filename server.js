@@ -3,7 +3,6 @@ var serveStatic = require('serve-static');
 
 var browserify = require("browserify");
 var watchify = require("watchify");
-var envify = require("envify");
 
 var fs = require("fs");
 
