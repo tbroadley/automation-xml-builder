@@ -99,5 +99,4 @@ class App extends React.Component {
 }
 
 // Connect the React top-level component to the Redux store.
-// TODO: use reselect.
 export default connect(x => x)(App);
