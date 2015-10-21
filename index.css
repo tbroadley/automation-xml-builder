@@ -42,3 +42,8 @@ td > input:not(:first-child):not(:last-child) {
 td {
   vertical-align: top;
 }
+
+/* Increase text input width */
+input[type="text"] {
+  width: 250px;
+}
