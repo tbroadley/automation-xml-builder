@@ -16,15 +16,9 @@ import {
 function argument(state = { name: '', value: '' }, action) {
   switch (action.type) {
     case CHANGE_ARGUMENT_NAME:
-      return {
-        name: action.name,
-        value: state.value,
-      };
+      return Object.assign({}, state, { name: action.name });
     case CHANGE_ARGUMENT_VALUE:
-      return {
-        name: state.name,
-        value: action.value,
-      };
+      return Object.assign({}, state, { value: action.value });
     case ADD_ARGUMENT:
       return Object.assign({}, state, { id: action.id });
     default:
