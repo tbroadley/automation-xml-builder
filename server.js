@@ -3,6 +3,8 @@ var serveStatic = require('serve-static');
 
 var browserify = require("browserify");
 var watchify = require("watchify");
+var envify = require("envify");
+
 var fs = require("fs");
 
 // The port on which the app will listen.
@@ -10,6 +12,7 @@ const PORT = 8080;
 
 // Set up the watchify build.
 var b = browserify({ cache: {}, packageCache: {} });
+b.transform('babelify');
 
 // Check if the build should be done in development mode.
 // The development build includes redux-devtools.
@@ -21,7 +24,8 @@ if (devMode) {
   console.log('The development build includes redux-devtools and react-addons-perf.')
 } else {
   b.add('index.js');
-  b.plugin('minifyify', { map: false });
+  b.transform('envify');
+  b.transform({ global: true }, 'uglifyify');
 }
 
 var w = watchify(b);
