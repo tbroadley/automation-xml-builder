@@ -30,7 +30,7 @@ import {
   removeArgument,
   changeArgumentName,
   changeArgumentValue,
-} from "../actions/action-creators";
+} from '../actions/action-creators';
 
 import { toObject, toXML } from '../parser/parser';
 
