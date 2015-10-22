@@ -7,9 +7,12 @@ import FastInput from './fast-input';
 @pureRender
 export default class JobSettings extends React.Component {
   render() {
+    let numSettings = this.props.settings.length;
+
     return (
       <div>
         <h2>Automation Settings</h2>
+        <p>{numSettings} setting{numSettings === 1 ? '' : 's'}</p>
         <table style={{ display: this.props.settings.length > 0 ? '' : 'none' }}>
           <tbody>
             {this.props.settings.map((el, index) => {

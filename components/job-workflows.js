@@ -78,6 +78,7 @@ class JobActivities extends React.Component {
                       value={el.name}
                       onChange={value => this.props.onChangeActivityName(workflowIndex, activityIndex, value)}
                     />
+                    <p>{el.arguments.length} argument{el.arguments.length === 1 ? '' : 's'}</p>
                     <JobArguments
                       workflowIndex={workflowIndex}
                       activityIndex={activityIndex}
@@ -107,9 +108,12 @@ class JobActivities extends React.Component {
 @pureRender
 export default class JobWorkflows extends React.Component {
   render() {
+    let numWorkflows = this.props.workflows.length;
+
     return (
       <div>
         <h2>Automation Workflows</h2>
+        <p>{numWorkflows} workflow{numWorkflows === 1 ? '' : 's'}</p>
         <table style={{ display: this.props.workflows.length > 0 ? '' : 'none' }}>
           <tbody>
             {this.props.workflows.map((el, index) => {
@@ -121,6 +125,7 @@ export default class JobWorkflows extends React.Component {
                       value={el.name}
                       onChange={value => this.props.onChangeWorkflowName(index, value)}
                     />
+                    <p>{el.activities.length} activit{el.activities.length === 1 ? 'y' : 'ies'}</p>
                     <JobActivities
                       workflowIndex={index}
                       activities={el.activities}
