@@ -1,7 +1,10 @@
 import React from 'react';
 
+import pureRender from 'pure-render-decorator';
+
 import FastTextInput from './fast-text-input';
 
+@pureRender
 export default class JobName extends React.Component {
   render() {
     return (

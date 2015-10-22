@@ -1,9 +1,12 @@
 import React from 'react';
 
+import pureRender from 'pure-render-decorator';
+
 import { ScheduleTypes } from '../actions/actions';
 
 import FastTextInput from './fast-text-input';
 
+@pureRender
 class DateTimeInput extends React.Component {
   render() {
     return (
@@ -23,6 +26,7 @@ class DateTimeInput extends React.Component {
   }
 }
 
+@pureRender
 class DateSetter extends React.Component {
   render() {
     let d = Date.prototype;
@@ -56,6 +60,7 @@ class DateSetter extends React.Component {
   }
 }
 
+@pureRender
 class TimeSetter extends React.Component {
   render() {
     let d = Date.prototype;
@@ -83,6 +88,7 @@ class TimeSetter extends React.Component {
   }
 }
 
+@pureRender
 export default class JobSchedule extends React.Component {
   render() {
     let isOneTime = this.props.scheduleType === ScheduleTypes.ONE_TIME;
@@ -124,14 +130,6 @@ export default class JobSchedule extends React.Component {
           />
         </div>
       </div>
-    );
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return !(
-      this.props.scheduleType === nextProps.scheduleType &&
-      this.props.scheduleOneTimeDate.getTime() === nextProps.scheduleOneTimeDate.getTime() &&
-      this.props.scheduleDailyTime.getTime() === nextProps.scheduleDailyTime.getTime()
     );
   }
 }

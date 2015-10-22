@@ -3,6 +3,7 @@ var serveStatic = require('serve-static');
 
 var browserify = require("browserify");
 var watchify = require("watchify");
+var babelify = require("babelify");
 
 var fs = require("fs");
 
@@ -11,7 +12,9 @@ const PORT = 8080;
 
 // Set up the watchify build.
 var b = browserify({ cache: {}, packageCache: {} });
-b.transform('babelify');
+b.transform(babelify.configure({
+  optional: ['es7.decorators']
+}));
 
 // Check if the build should be done in development mode.
 // The development build includes redux-devtools.
