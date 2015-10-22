@@ -52,7 +52,9 @@ class App extends React.Component {
     return (
       <div id='app-root'>
         <AppSettings
-          onFileUpload={xml => dispatch(uploadFile(toObject(xml)))}
+          onFileUpload={xml => dispatch(uploadFile(toObject(xml,
+            err => alert('Error uploading XML:\r\n' + err.message)
+          )))}
           onClearAll={d(clearAll)}
           downloadXML={toXML(this.props)}
           jobName={jobName}

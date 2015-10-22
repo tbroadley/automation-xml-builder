@@ -5,12 +5,15 @@ import { ScheduleTypes } from '../actions/actions';
 import { getNextIDAndIncrement } from '../id-generator/id-generator';
 
 // Turns an XML string into a JS object that is compatible with the Redux store.
-export function toObject(xml) {
-  let obj = {};
+export function toObject(xml, errCallback) {
+  let obj;
 
   parseString(xml, (err, result) => {
-    obj = result;
-    console.log(err);
+    if (!err) {
+      obj = result;
+      return;
+    }
+    errCallback(err);
   });
 
   let oneTime = obj.Job.Schedule[0].ScheduleType[0] === 'OneTime';
