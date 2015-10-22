@@ -2,7 +2,7 @@ import React from 'react';
 
 import pureRender from 'pure-render-decorator';
 
-import FastTextInput from './fast-text-input';
+import FastInput from './fast-input';
 
 @pureRender
 export default class JobSettings extends React.Component {
@@ -16,14 +16,14 @@ export default class JobSettings extends React.Component {
               return (
                 <tr key={el.id}>
                   <td>
-                    <FastTextInput
+                    <FastInput
                       value={el.name}
                       onChange={value =>
                         this.props.onChangeSettingName(index, value)}
                     />
                   </td>
                   <td>
-                    <FastTextInput
+                    <FastInput
                       value={el.value}
                       onChange={value =>
                         this.props.onChangeSettingValue(index, value)}

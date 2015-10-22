@@ -2,7 +2,7 @@ import React from 'react';
 
 import pureRender from 'pure-render-decorator';
 
-import FastTextInput from './fast-text-input';
+import FastInput from './fast-input';
 
 @pureRender
 export default class JobName extends React.Component {
@@ -10,7 +10,7 @@ export default class JobName extends React.Component {
     return (
       <div>
         <h2>Automation Name</h2>
-        <FastTextInput
+        <FastInput
           value={this.props.name}
           onChange={value => this.props.onSetJobName(value)}
         />

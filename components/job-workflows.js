@@ -2,7 +2,7 @@ import React from 'react';
 
 import pureRender from 'pure-render-decorator';
 
-import FastTextInput from './fast-text-input';
+import FastInput from './fast-input';
 
 @pureRender
 class JobArguments extends React.Component {
@@ -18,7 +18,7 @@ class JobArguments extends React.Component {
               return (
                 <tr key={el.id}>
                   <td>
-                    <FastTextInput
+                    <FastInput
                       value={el.name}
                       onChange={value => this.props.onChangeArgumentName(
                         workflowIndex,
@@ -26,7 +26,7 @@ class JobArguments extends React.Component {
                         argumentIndex,
                         value)}
                     />
-                    <FastTextInput
+                    <FastInput
                         value={el.value}
                         onChange={value => this.props.onChangeArgumentValue(
                           workflowIndex,
@@ -74,7 +74,7 @@ class JobActivities extends React.Component {
                 <tr key={el.id}>
                   <td>
                     <p>Activity name:</p>
-                    <FastTextInput
+                    <FastInput
                       value={el.name}
                       onChange={value => this.props.onChangeActivityName(workflowIndex, activityIndex, value)}
                     />
@@ -117,7 +117,7 @@ export default class JobWorkflows extends React.Component {
                 <tr key={el.id}>
                   <td>
                     <p>Workflow name:</p>
-                    <FastTextInput
+                    <FastInput
                       value={el.name}
                       onChange={value => this.props.onChangeWorkflowName(index, value)}
                     />

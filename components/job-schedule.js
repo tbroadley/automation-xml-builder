@@ -4,13 +4,13 @@ import pureRender from 'pure-render-decorator';
 
 import { ScheduleTypes } from '../actions/actions';
 
-import FastTextInput from './fast-text-input';
+import FastInput from './fast-input';
 
 @pureRender
 class DateTimeInput extends React.Component {
   render() {
     return (
-      <FastTextInput
+      <FastInput
         value={this.props.getter.call(this.props.date)}
         onChange={value => this.handleChange(value)}
       />
@@ -99,14 +99,14 @@ export default class JobSchedule extends React.Component {
           Execution Type
         </h2>
         <div>
-          <input
+          <FastInput
             type='radio'
             checked={isOneTime}
             onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
           />
           One-Time
           <br />
-          <input
+          <FastInput
             type='radio'
             checked={!isOneTime}
             onChange={() => this.props.onSetScheduleType(ScheduleTypes.DAILY)}
