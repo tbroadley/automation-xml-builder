@@ -20,7 +20,7 @@ export default class FastInput extends React.Component {
       default:
         return (
           <input
-            type={this.props.type}
+            type={this.props.type || 'text'}
             value={this.props.value}
             onChange={e => this.props.onChange(e.target.value)}
           />
