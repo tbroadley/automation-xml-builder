@@ -1,39 +1,51 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import pureRender from 'pure-render-decorator';
 
 import FastInput from './fast-input';
 
+import {
+  addSetting,
+  removeSetting,
+  changeSettingName,
+  changeSettingValue,
+} from '../actions/action-creators';
+
 @pureRender
-export default class JobSettings extends React.Component {
+class JobSettings extends React.Component {
   render() {
-    let numSettings = this.props.settings.length;
+    let {
+      dispatch,
+      settings,
+    } = this.props;
+    let numSettings = settings.length;
 
     return (
       <div>
         <h2>Automation Settings</h2>
         <p>{numSettings} setting{numSettings === 1 ? '' : 's'}</p>
-        <table style={{ display: this.props.settings.length > 0 ? '' : 'none' }}>
+        <table style={{ display: numSettings > 0 ? '' : 'none' }}>
           <tbody>
-            {this.props.settings.map((el, index) => {
+            {settings.map((el, index) => {
               return (
                 <tr key={el.id}>
                   <td>
                     <FastInput
                       value={el.name}
-                      onChange={value =>
-                        this.props.onChangeSettingName(index, value)}
+                      onChange={name =>
+                        dispatch(changeSettingName(index, name))}
                     />
                   </td>
                   <td>
                     <FastInput
                       value={el.value}
                       onChange={value =>
-                        this.props.onChangeSettingValue(index, value)}
+                        dispatch(changeSettingValue(index, value))}
                     />
                   </td>
                   <td>
-                    <button onClick={() => this.props.onRemoveSetting(index)}>
+                    <button onClick={() => dispatch(removeSetting(index))}>
                       Remove
                     </button>
                   </td>
@@ -42,8 +54,10 @@ export default class JobSettings extends React.Component {
             })}
           </tbody>
         </table>
-        <button onClick={this.props.onAddSetting}>Add Setting</button>
+        <button onClick={() => dispatch(addSetting())}>Add Setting</button>
       </div>
     );
   }
 }
+
+export default connect(state => ({ settings: state.jobSettings }))(JobSettings);

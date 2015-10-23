@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import pureRender from 'pure-render-decorator';
 
 import FastInput from './fast-input';
+
+import * as actionCreators from '../actions/action-creators';
 
 @pureRender
 class JobArguments extends React.Component {
@@ -106,40 +109,54 @@ class JobActivities extends React.Component {
 }
 
 @pureRender
-export default class JobWorkflows extends React.Component {
+class JobWorkflows extends React.Component {
   render() {
-    let numWorkflows = this.props.workflows.length;
+    let {
+      dispatch,
+      workflows,
+      addWorkflow,
+      removeWorkflow,
+      changeWorkflowName,
+      addActivity,
+      removeActivity,
+      changeActivityName,
+      addArgument,
+      removeArgument,
+      changeArgumentName,
+      changeArgumentValue,
+    } = this.props;
+    let numWorkflows = workflows.length;
 
     return (
       <div>
         <h2>Automation Workflows</h2>
         <p>{numWorkflows} workflow{numWorkflows === 1 ? '' : 's'}</p>
-        <table style={{ display: this.props.workflows.length > 0 ? '' : 'none' }}>
+        <table style={{ display: numWorkflows > 0 ? '' : 'none' }}>
           <tbody>
-            {this.props.workflows.map((el, index) => {
+            {workflows.map((el, index) => {
               return (
                 <tr key={el.id}>
                   <td>
                     <p>Workflow name:</p>
                     <FastInput
                       value={el.name}
-                      onChange={value => this.props.onChangeWorkflowName(index, value)}
+                      onChange={value => changeWorkflowName(index, value)}
                     />
                     <p>{el.activities.length} activit{el.activities.length === 1 ? 'y' : 'ies'}</p>
                     <JobActivities
                       workflowIndex={index}
                       activities={el.activities}
-                      onAddActivity={this.props.onAddActivity}
-                      onRemoveActivity={this.props.onRemoveActivity}
-                      onChangeActivityName={this.props.onChangeActivityName}
-                      onAddArgument={this.props.onAddArgument}
-                      onRemoveArgument={this.props.onRemoveArgument}
-                      onChangeArgumentName={this.props.onChangeArgumentName}
-                      onChangeArgumentValue={this.props.onChangeArgumentValue}
+                      onAddActivity={addActivity}
+                      onRemoveActivity={removeActivity}
+                      onChangeActivityName={changeActivityName}
+                      onAddArgument={addArgument}
+                      onRemoveArgument={removeArgument}
+                      onChangeArgumentName={changeArgumentName}
+                      onChangeArgumentValue={changeArgumentValue}
                     />
                   </td>
                   <td>
-                    <button onClick={() => this.props.onRemoveWorkflow(index)}>
+                    <button onClick={() => removeWorkflow(index)}>
                       Remove
                     </button>
                   </td>
@@ -148,8 +165,16 @@ export default class JobWorkflows extends React.Component {
             })}
           </tbody>
         </table>
-        <button onClick={this.props.onAddWorkflow}>Add Workflow</button>
+        <button onClick={addWorkflow}>Add Workflow</button>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    workflows: state.jobWorkflows,
+  };
+}
+
+export default connect(mapStateToProps, actionCreators)(JobWorkflows);

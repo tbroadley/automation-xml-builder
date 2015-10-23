@@ -1,7 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class AppSettings extends React.Component {
+import {
+  uploadFile,
+  clearAll,
+} from '../actions/action-creators';
+
+import { toObject, toXML } from '../parser/parser';
+
+class AppSettings extends React.Component {
   render() {
+    let {
+      dispatch,
+      jobName,
+    } = this.props;
+
     return (
       <div>
         <h2>Application Settings</h2>
@@ -10,18 +23,18 @@ export default class AppSettings extends React.Component {
           <input
             type='file'
             ref='fileInput'
-            onChange={e => this.handleUpload(e, this.props.onFileUpload)}
+            onChange={e => this.handleUpload(e, dispatch)}
           />
         </div>
         <div>
-          <button onClick={this.props.onClearAll}>
+          <button onClick={() => dispatch(clearAll())}>
             Clear All
           </button>
         </div>
         <div>
           <a
             href={this.getDownloadLink()}
-            download={this.props.jobName + '.xml'}
+            download={jobName + '.xml'}
           >
             Download
           </a>
@@ -30,7 +43,7 @@ export default class AppSettings extends React.Component {
     );
   }
 
-  handleUpload(e, onFileUpload) {
+  handleUpload(e, dispatch) {
     e.preventDefault();
 
     // Get the list of files that were uploaded by the user.
@@ -39,7 +52,9 @@ export default class AppSettings extends React.Component {
 
     const reader = new FileReader();
     reader.onload = e =>
-      onFileUpload(e.target.result);
+      dispatch(uploadFile(toObject(e.target.result,
+        err => alert('Error uploading XML:\r\n' + err.message)
+      )));
 
     reader.readAsText(files[0]);
   }
@@ -48,6 +63,9 @@ export default class AppSettings extends React.Component {
   // store.
   getDownloadLink() {
     return 'data:text/xml;charset=utf-8,' +
-      encodeURIComponent(this.props.downloadXML);
+      encodeURIComponent(toXML(this.props));
   }
 }
+
+// To create the XML output, AppSettings needs to receive the entire state tree.
+export default connect(state => state)(AppSettings);

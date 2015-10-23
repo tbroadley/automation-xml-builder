@@ -1,10 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import pureRender from 'pure-render-decorator';
 
 import { ScheduleTypes } from '../actions/actions';
 
 import FastInput from './fast-input';
+
+import {
+  setJobScheduleType,
+  setJobScheduleOneTimeDate,
+  setJobScheduleDailyTime,
+} from '../actions/action-creators';
 
 @pureRender
 class DateTimeInput extends React.Component {
@@ -89,9 +96,16 @@ class TimeSetter extends React.Component {
 }
 
 @pureRender
-export default class JobSchedule extends React.Component {
+class JobSchedule extends React.Component {
   render() {
-    let isOneTime = this.props.scheduleType === ScheduleTypes.ONE_TIME;
+    let {
+      dispatch,
+      type,
+      oneTimeDate,
+      dailyTime,
+    } = this.props;
+
+    let isOneTime = type === ScheduleTypes.ONE_TIME;
 
     return (
       <div>
@@ -102,34 +116,36 @@ export default class JobSchedule extends React.Component {
           <FastInput
             type='radio'
             checked={isOneTime}
-            onChange={() => this.props.onSetScheduleType(ScheduleTypes.ONE_TIME)}
+            onChange={() => dispatch(setJobScheduleType(ScheduleTypes.ONE_TIME))}
           />
           One-Time
           <br />
           <FastInput
             type='radio'
             checked={!isOneTime}
-            onChange={() => this.props.onSetScheduleType(ScheduleTypes.DAILY)}
+            onChange={() => dispatch(setJobScheduleType(ScheduleTypes.DAILY))}
           />
           Daily
         </div>
         <div style={{ display: isOneTime ? '' : 'none' }}>
           <DateSetter
-            date={this.props.scheduleOneTimeDate}
-            onDateChange={this.props.onOneTimeDateChange}
+            date={oneTimeDate}
+            onDateChange={date => dispatch(setJobScheduleOneTimeDate(date))}
           />
           <TimeSetter
-            time={this.props.scheduleOneTimeDate}
-            onTimeChange={this.props.onOneTimeDateChange}
+            time={oneTimeDate}
+            onTimeChange={time => dispatch(setJobScheduleOneTimeDate(time))}
           />
         </div>
         <div style={{ display: isOneTime ? 'none' : '' }}>
           <TimeSetter
-            time={this.props.scheduleDailyTime}
-            onTimeChange={this.props.onDailyTimeChange}
+            time={dailyTime}
+            onTimeChange={time => dispatch(setJobScheduleDailyTime(time))}
           />
         </div>
       </div>
     );
   }
 }
+
+export default connect(state => state.jobSchedule)(JobSchedule);
