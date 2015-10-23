@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-execute');
   grunt.loadNpmTasks('grunt-parallel');
   grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-eslint');
 
   grunt.registerTask('dev', ['env:dev', 'parallel:dev']);
   grunt.registerTask('prod', ['env:prod', 'browserify:prod', 'uglify']);
@@ -63,6 +64,16 @@ module.exports = function(grunt) {
       prod: {
         NODE_ENV: 'production',
       },
+    },
+    eslint: {
+        all: [
+          '*.js',
+          'actions/*.js',
+          'components/*.js',
+          'id-generator/*.js',
+          'parser/*.js',
+          'reducers/*.js',
+        ],
     },
   });
 };
