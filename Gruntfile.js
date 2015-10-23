@@ -3,9 +3,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-execute');
   grunt.loadNpmTasks('grunt-parallel');
+  grunt.loadNpmTasks('grunt-env');
 
-  grunt.registerTask('dev', ['parallel:dev']);
-  grunt.registerTask('prod', ['browserify:prod', 'uglify']);
+  grunt.registerTask('dev', ['env:dev', 'parallel:dev']);
+  grunt.registerTask('prod', ['env:prod', 'browserify:prod', 'uglify']);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -53,6 +54,14 @@ module.exports = function(grunt) {
           stream: true,
         },
         tasks: ['execute:dev', 'browserify:dev'],
+      },
+    },
+    env: {
+      dev: {
+        NODE_ENV: 'development',
+      },
+      prod: {
+        NODE_ENV: 'production',
       },
     },
   });
