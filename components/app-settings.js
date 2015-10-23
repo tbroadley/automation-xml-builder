@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import pureRender from 'pure-render-decorator';
+
 import {
   uploadFile,
   clearAll,
@@ -8,6 +10,7 @@ import {
 
 import { toObject, toXML } from '../parser/parser';
 
+@pureRender
 class AppSettings extends React.Component {
   render() {
     let {
