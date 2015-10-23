@@ -23,8 +23,11 @@ module.exports = function(grunt) {
         src: 'index.js',
         dest: 'build/bundle.js',
         options: {
-          transform: [['babelify', { optional: ['es7.decorators'] }],
-            'envify', ['uglifyify', { global: true }]]
+          transform: [
+            ['babelify', { optional: ['es7.decorators'] }],
+            ['envify', { global: true }],
+            ['uglifyify', { global: true }],
+          ],
         },
       },
     },
