@@ -48,3 +48,8 @@ td {
 input[type="text"] {
   width: 250px;
 }
+
+/* Reduce the width of date and time inputs */
+#app-root > div:nth-child(4) input[type="text"] {
+  width: 75px;
+}
