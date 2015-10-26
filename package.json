@@ -13,11 +13,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "es5-shim": "^4.1.15",
     "pure-render-decorator": "^0.2.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-redux": "^4.0.0",
     "redux": "^3.0.2",
+    "string.prototype.repeat": "^0.2.0",
     "xml2js": "^0.4.13"
   },
   "devDependencies": {

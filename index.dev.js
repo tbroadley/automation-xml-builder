@@ -11,6 +11,10 @@ import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import root from './reducers/root';
 import App from './components/app';
 
+import 'es5-shim/es5-shim';
+import 'es5-shim/es5-sham';
+import 'string.prototype.repeat';
+
 const finalCreateStore = compose(
   // Provides support for DevTools:
   devTools(),
