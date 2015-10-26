@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         src: 'index.dev.js',
         dest: 'build/bundle.js',
         options: {
-          transform: [['babelify', { optional: ['es7.decorators'] }]],
+          transform: [['babelify', { optional: ['es7.decorators', 'runtime'] }]],
           watch: true,
           keepAlive: true,
         },
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         dest: 'build/bundle.js',
         options: {
           transform: [
-            ['babelify', { optional: ['es7.decorators'] }],
+            ['babelify', { optional: ['es7.decorators', 'runtime'] }],
             ['envify', { global: true }],
             ['uglifyify', { global: true }],
           ],
