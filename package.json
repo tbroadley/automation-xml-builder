@@ -13,7 +13,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "es5-shim": "^4.1.15",
     "pure-render-decorator": "^0.2.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
